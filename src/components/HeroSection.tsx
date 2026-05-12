@@ -345,17 +345,24 @@ export function HeroSection() {
           
           {/* Chat Window */}
           <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
-            {messages.map((msg) => (
-              <div key={msg.id} className={`flex w-full ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                <div className={`backdrop-blur-2xl border shadow-sm p-5 rounded-3xl text-sm font-light leading-relaxed min-h-[60px] flex items-center ${
-                  msg.role === "user" 
-                    ? "bg-stone-900 text-white border-stone-800 rounded-tr-md max-w-[85%]" 
-                    : "bg-gradient-to-br from-white/90 to-[#FDFBF7]/90 border-white text-stone-700 rounded-tl-md max-w-[85%]"
-                }`}>
-                  <div dangerouslySetInnerHTML={{ __html: msg.content.replace(/\n/g, '<br/>') }} />
+            {messages.map((msg) => {
+              // Parse markdown links to styled <a> tags and newlines to <br/>
+              const formattedContent = msg.content
+                .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="font-medium text-stone-900 border-b border-stone-300 hover:border-stone-900 transition-colors">$1</a>')
+                .replace(/\n/g, '<br/>');
+
+              return (
+                <div key={msg.id} className={`flex w-full ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
+                  <div className={`backdrop-blur-2xl border shadow-sm p-5 rounded-3xl text-sm font-light leading-relaxed min-h-[60px] flex items-center ${
+                    msg.role === "user" 
+                      ? "bg-stone-900 text-white border-stone-800 rounded-tr-md max-w-[85%]" 
+                      : "bg-gradient-to-br from-white/90 to-[#FDFBF7]/90 border-white text-stone-700 rounded-tl-md max-w-[85%]"
+                  }`}>
+                    <div dangerouslySetInnerHTML={{ __html: formattedContent }} />
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
             
             {isTyping && (
               <div className="flex w-full justify-start">
