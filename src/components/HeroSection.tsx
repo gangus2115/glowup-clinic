@@ -42,23 +42,23 @@ const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
   const widgets = [
     {
       text: "Zaplanowano wizytę: Powiększanie ust (14:30)",
-      icon: <Calendar className="w-4 h-4 text-stone-700 stroke-[1.5]" />,
-      position: "top-[25%] left-[5%]"
+      icon: <Calendar className="w-3 h-3 lg:w-4 lg:h-4 text-stone-700 stroke-[1.5]" />,
+      position: "top-[15%] lg:top-[25%] left-[5%]"
     },
     {
       text: "Wykryto przeciwwskazanie. Konsultacja w toku...",
-      icon: <ShieldAlert className="w-4 h-4 text-stone-700 stroke-[1.5]" />,
-      position: "top-[50%] right-[5%]"
+      icon: <ShieldAlert className="w-3 h-3 lg:w-4 lg:h-4 text-stone-700 stroke-[1.5]" />,
+      position: "top-[45%] lg:top-[50%] right-[5%]"
     },
     {
       text: "Nowy lead: Wycena wdrożenia",
-      icon: <Sparkles className="w-4 h-4 text-stone-700 stroke-[1.5]" />,
-      position: "bottom-[20%] left-[15%]"
+      icon: <Sparkles className="w-3 h-3 lg:w-4 lg:h-4 text-stone-700 stroke-[1.5]" />,
+      position: "bottom-[25%] lg:bottom-[20%] left-[10%] lg:left-[15%]"
     }
   ];
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-20 hidden lg:block">
+    <div className="absolute inset-0 pointer-events-none z-20">
       {widgets.map((widget, index) => (
         <motion.div
           key={index}
@@ -68,13 +68,13 @@ const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
             boxShadow: "0 20px 50px rgba(202, 175, 130, 0.2)"
           }}
           transition={{ duration: 0.3, ease: "circOut" }}
-          className={`pointer-events-auto absolute ${widget.position} bg-neutral-50/70 backdrop-blur-xl border border-stone-100 shadow-md rounded-2xl p-4 flex items-center gap-4 cursor-pointer`}
+          className={`pointer-events-auto absolute ${widget.position} bg-neutral-50/70 backdrop-blur-xl border border-stone-100 shadow-md rounded-xl lg:rounded-2xl p-2.5 lg:p-4 flex items-center gap-2.5 lg:gap-4 cursor-pointer max-w-[85vw] lg:max-w-none`}
           style={{ WebkitBackdropFilter: "blur(16px)", backgroundColor: "rgba(255, 255, 255, 0.85)" }}
         >
-          <div className="bg-white/80 backdrop-blur-md p-2 rounded-full border border-stone-100 shadow-sm">
+          <div className="bg-white/80 backdrop-blur-md p-1.5 lg:p-2 rounded-full border border-stone-100 shadow-sm shrink-0">
             {widget.icon}
           </div>
-          <span className="text-sm font-medium text-stone-800 tracking-wide">
+          <span className="text-[11px] lg:text-sm font-medium text-stone-800 tracking-wide leading-tight">
             {widget.text}
           </span>
         </motion.div>
@@ -103,11 +103,7 @@ export function HeroSection() {
 
     // Scroll listener for Mobile Sticky Bar
     const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.body.scrollHeight;
-      
-      if (scrollPosition > (documentHeight - windowHeight) / 2) {
+      if (window.scrollY > 80) {
         setShowStickyBar(true);
       } else {
         setShowStickyBar(false);
