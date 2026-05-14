@@ -59,6 +59,17 @@ const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
 
   return (
     <div className="absolute inset-0 pointer-events-none z-20">
+      <style>{`
+        @keyframes mobile-icon-pulse {
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.2); }
+        }
+        @media (max-width: 1023px) {
+          .mobile-icon-anim {
+            animation: mobile-icon-pulse 2.5s ease-in-out infinite;
+          }
+        }
+      `}</style>
       {widgets.map((widget, index) => (
         <motion.div
           key={index}
@@ -71,7 +82,7 @@ const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
           className={`pointer-events-auto absolute ${widget.position} bg-neutral-50/70 backdrop-blur-xl border border-stone-100 shadow-md rounded-xl lg:rounded-2xl p-2.5 lg:p-4 flex items-center gap-2.5 lg:gap-4 cursor-pointer max-w-[85vw] lg:max-w-none`}
           style={{ WebkitBackdropFilter: "blur(16px)", backgroundColor: "rgba(255, 255, 255, 0.85)" }}
         >
-          <div className="bg-white/80 backdrop-blur-md p-1.5 lg:p-2 rounded-full border border-stone-100 shadow-sm shrink-0">
+          <div className="mobile-icon-anim bg-white/80 backdrop-blur-md p-1.5 lg:p-2 rounded-full border border-stone-100 shadow-sm shrink-0">
             {widget.icon}
           </div>
           <span className="text-[11px] lg:text-sm font-medium text-stone-800 tracking-wide leading-tight">
@@ -281,7 +292,7 @@ export function HeroSection() {
       {/* Mobile Sticky Bar - Safe iOS Wrapper */}
       <div className="md:hidden fixed bottom-0 left-0 right-0 z-[9999] pointer-events-none" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         <AnimatePresence>
-          {showStickyBar && (
+          {(showStickyBar && !isDrawerOpen) && (
             <motion.div 
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
