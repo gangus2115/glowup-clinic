@@ -286,20 +286,28 @@ export function HeroSection() {
       <AnimatePresence>
         {showStickyBar && (
           <motion.div 
-            initial={{ bottom: "-100%" }}
-            animate={{ bottom: 0 }}
-            exit={{ bottom: "-100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="md:hidden fixed left-0 right-0 bg-white/80 backdrop-blur-md border-t border-stone-200/50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 flex items-center justify-between"
-            style={{ position: "fixed", width: "100%", zIndex: 9999, WebkitBackdropFilter: "blur(16px)" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="md:hidden fixed bottom-0 left-0 right-0 z-[9999]"
+            style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
           >
-            <span className="text-sm font-medium text-stone-800 tracking-wide">Przetestuj Wirtualną Asystentkę</span>
-            <button 
-              onClick={() => setIsDrawerOpen(true)}
-              className="flex items-center justify-center bg-stone-900 text-white rounded-full p-3 shadow-md active:scale-95 transition-transform"
+            <motion.div 
+              initial={{ y: "100%" }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="w-full bg-white/80 backdrop-blur-md border-t border-stone-200/50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 flex items-center justify-between"
+              style={{ WebkitBackdropFilter: "blur(16px)" }}
             >
-              <MessageCircle className="w-5 h-5 stroke-[1.5]" />
-            </button>
+              <span className="text-sm font-medium text-stone-800 tracking-wide">Przetestuj Wirtualną Asystentkę</span>
+              <button 
+                onClick={() => setIsDrawerOpen(true)}
+                className="flex items-center justify-center bg-stone-900 text-white rounded-full p-3 shadow-md active:scale-95 transition-transform"
+              >
+                <MessageCircle className="w-5 h-5 stroke-[1.5]" />
+              </button>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
