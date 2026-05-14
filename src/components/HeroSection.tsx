@@ -68,7 +68,8 @@ const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
             boxShadow: "0 20px 50px rgba(202, 175, 130, 0.2)"
           }}
           transition={{ duration: 0.3, ease: "circOut" }}
-          className={`mobile-glass-fix pointer-events-auto absolute ${widget.position} bg-neutral-50/70 backdrop-blur-xl border border-stone-100 shadow-md rounded-2xl p-4 flex items-center gap-4 cursor-pointer`}
+          className={`pointer-events-auto absolute ${widget.position} bg-neutral-50/70 backdrop-blur-xl border border-stone-100 shadow-md rounded-2xl p-4 flex items-center gap-4 cursor-pointer`}
+          style={{ WebkitBackdropFilter: "blur(16px)" }}
         >
           <div className="bg-white/80 backdrop-blur-md p-2 rounded-full border border-stone-100 shadow-sm">
             {widget.icon}
@@ -285,11 +286,12 @@ export function HeroSection() {
       <AnimatePresence>
         {showStickyBar && (
           <motion.div 
-            initial={{ y: "100%" }}
-            animate={{ y: 0 }}
-            exit={{ y: "100%" }}
+            initial={{ bottom: "-100%" }}
+            animate={{ bottom: 0 }}
+            exit={{ bottom: "-100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="mobile-sticky-fix md:hidden fixed bottom-0 left-0 right-0 z-30 bg-white/80 backdrop-blur-md border-t border-stone-200/50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 flex items-center justify-between"
+            className="md:hidden fixed left-0 right-0 bg-white/80 backdrop-blur-md border-t border-stone-200/50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 flex items-center justify-between"
+            style={{ position: "fixed", width: "100%", zIndex: 9999, WebkitBackdropFilter: "blur(16px)" }}
           >
             <span className="text-sm font-medium text-stone-800 tracking-wide">Przetestuj Wirtualną Asystentkę</span>
             <button 
@@ -319,7 +321,8 @@ export function HeroSection() {
           animate={{ x: isDrawerOpen ? 0 : "100%" }}
           initial={{ x: "100%" }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className={`mobile-glass-fix absolute top-0 right-0 bottom-0 w-full md:w-[450px] bg-white/50 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-l border-white/60 flex flex-col ${isDrawerOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+          className={`absolute top-0 right-0 bottom-0 w-full md:w-[450px] bg-white/50 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-l border-white/60 flex flex-col ${isDrawerOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+          style={{ WebkitBackdropFilter: "blur(24px)" }}
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-stone-200/50 bg-white/20">
@@ -353,11 +356,11 @@ export function HeroSection() {
 
               return (
                 <div key={msg.id} className={`flex w-full ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                  <div className={`mobile-glass-fix backdrop-blur-2xl border shadow-sm p-5 rounded-3xl text-sm font-light leading-relaxed min-h-[60px] flex items-center ${
+                  <div className={`backdrop-blur-2xl border shadow-sm p-5 rounded-3xl text-sm font-light leading-relaxed min-h-[60px] flex items-center ${
                     msg.role === "user" 
                       ? "bg-stone-900 text-white border-stone-800 rounded-tr-md max-w-[85%]" 
                       : "bg-gradient-to-br from-white/90 to-[#FDFBF7]/90 border-white text-stone-700 rounded-tl-md max-w-[85%]"
-                  }`}>
+                  }`} style={{ WebkitBackdropFilter: "blur(16px)" }}>
                     <div dangerouslySetInnerHTML={{ __html: formattedContent }} />
                   </div>
                 </div>
@@ -366,7 +369,7 @@ export function HeroSection() {
             
             {isTyping && (
               <div className="flex w-full justify-start">
-                <div className="mobile-glass-fix bg-gradient-to-br from-white/90 to-[#FDFBF7]/90 backdrop-blur-2xl border border-white shadow-sm p-5 rounded-3xl rounded-tl-md max-w-[85%] text-stone-700 font-light leading-relaxed text-sm min-h-[60px] flex items-center">
+                <div className="bg-gradient-to-br from-white/90 to-[#FDFBF7]/90 backdrop-blur-2xl border border-white shadow-sm p-5 rounded-3xl rounded-tl-md max-w-[85%] text-stone-700 font-light leading-relaxed text-sm min-h-[60px] flex items-center" style={{ WebkitBackdropFilter: "blur(16px)" }}>
                   <div className="flex items-center gap-1.5 px-2">
                     <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0 }} className="w-1.5 h-1.5 bg-stone-400 rounded-full" />
                     <motion.div animate={{ y: [0, -5, 0] }} transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }} className="w-1.5 h-1.5 bg-stone-400 rounded-full" />
