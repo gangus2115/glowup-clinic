@@ -282,23 +282,17 @@ export function HeroSection() {
         
       </section>
 
-      {/* Mobile Sticky Bar */}
-      <AnimatePresence>
-        {showStickyBar && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="md:hidden fixed bottom-0 left-0 right-0 z-[9999]"
-            style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
-          >
+      {/* Mobile Sticky Bar - Safe iOS Wrapper */}
+      <div className="md:hidden fixed bottom-0 left-0 right-0 z-[9999] pointer-events-none" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+        <AnimatePresence>
+          {showStickyBar && (
             <motion.div 
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="w-full bg-white/80 backdrop-blur-md border-t border-stone-200/50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 flex items-center justify-between"
-              style={{ WebkitBackdropFilter: "blur(16px)", backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+              className="w-full bg-white/80 backdrop-blur-md border-t border-stone-200/50 shadow-[0_-10px_40px_rgba(0,0,0,0.05)] p-4 flex items-center justify-between pointer-events-auto"
+              style={{ WebkitBackdropFilter: "blur(16px)", backgroundColor: "rgba(255, 255, 255, 0.95)" }}
             >
               <span className="text-sm font-medium text-stone-800 tracking-wide">Przetestuj Wirtualną Asystentkę</span>
               <button 
@@ -308,9 +302,9 @@ export function HeroSection() {
                 <MessageCircle className="w-5 h-5 stroke-[1.5]" />
               </button>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* Drawer (Hiding via CSS, not unmounting) */}
       <div className="fixed inset-0 z-50 pointer-events-none">
