@@ -1,6 +1,7 @@
 import React from "react";
 import { Calendar, ShieldCheck, AlertCircle } from "lucide-react";
 
+export function FeaturesSection() {
   return (
     <section className="w-full max-w-5xl mx-auto px-6 py-16 relative z-10">
       <h2 className="text-center text-2xl font-semibold tracking-tight text-white/90 mb-10"
