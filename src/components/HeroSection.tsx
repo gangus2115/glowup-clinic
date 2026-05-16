@@ -6,6 +6,7 @@ import { ArrowRight, X, Calendar, ShieldAlert, Sparkles, MessageCircle } from "l
 
 import { Spotlight } from "@/components/ui/spotlight";
 import { BorderBeam } from "@/components/ui/border-beam";
+import PulsingIcon from "@/components/PulsingIcon";
 
 const CHAT_FONT: React.CSSProperties = {
   fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
@@ -16,17 +17,17 @@ const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
   const widgets = [
     {
       text: "Zaplanowano wizytę: Powiększanie ust (14:30)",
-      icon: <Calendar className="w-3 h-3 lg:w-4 lg:h-4 text-white/70 stroke-[1.5]" />,
+      icon: <PulsingIcon duration={2.6}><Calendar className="w-3 h-3 lg:w-4 lg:h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
       position: "top-[15%] lg:top-[25%] left-[5%]",
     },
     {
       text: "Wykryto przeciwwskazanie. Konsultacja w toku...",
-      icon: <ShieldAlert className="w-3 h-3 lg:w-4 lg:h-4 text-white/70 stroke-[1.5]" />,
+      icon: <PulsingIcon duration={3.2}><ShieldAlert className="w-3 h-3 lg:w-4 lg:h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
       position: "top-[45%] lg:top-[50%] right-[5%]",
     },
     {
       text: "Nowy lead: Wycena wdrożenia",
-      icon: <Sparkles className="w-3 h-3 lg:w-4 lg:h-4 text-white/70 stroke-[1.5]" />,
+      icon: <PulsingIcon duration={2.9}><Sparkles className="w-3 h-3 lg:w-4 lg:h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
       position: "bottom-[25%] lg:bottom-[20%] left-[10%] lg:left-[15%]",
     },
   ];
@@ -53,7 +54,7 @@ const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
             boxShadow: "0 0 24px rgba(212, 175, 55, 0.12)",
           }}
           transition={{ duration: 0.3, ease: "circOut" }}
-          className={`pointer-events-auto absolute ${widget.position} backdrop-blur-md border border-white/10 rounded-xl p-2.5 lg:p-4 flex items-center gap-2.5 lg:gap-4 cursor-pointer max-w-[85vw] lg:max-w-none`}
+          className={`pointer-events-auto absolute ${widget.position} backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 flex items-center gap-2.5 lg:gap-4 cursor-pointer max-w-[85vw] lg:max-w-none`}
           style={{
             WebkitBackdropFilter: "blur(12px)",
             backgroundColor: "rgba(10, 10, 15, 0.70)",

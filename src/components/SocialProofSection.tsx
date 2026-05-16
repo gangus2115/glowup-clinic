@@ -20,85 +20,75 @@ export function SocialProofSection() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center max-w-4xl mx-auto relative z-10">
 
-        <div className="flex flex-col items-center justify-center">
-          <span
-            className="mb-3 flex items-center justify-center [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
-            style={{
-              ...statFont,
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              fontWeight: 700,
-              letterSpacing: "-0.04em",
-              color: "#D4AF37",
-            }}
-          >
-            <NumberTicker value={120} />h
-          </span>
-          <span
-            style={{
-              ...statFont,
-              fontSize: "0.8rem",
-              fontWeight: 400,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              color: "rgba(255, 255, 255, 0.45)",
-            }}
-          >
+        {/* 120h */}
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex items-baseline gap-[0.15em]">
+            <NumberTicker
+              value={120}
+              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#D4AF37] [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
+              style={statFont}
+            />
+            <span
+              style={{
+                fontSize: "0.55em",
+                fontWeight: 500,
+                letterSpacing: "-0.02em",
+                color: "#C0C0C0",
+                opacity: 0.72,
+                lineHeight: 1,
+                paddingBottom: "0.15em",
+              }}
+            >
+              h
+            </span>
+          </div>
+          <p className="text-[0.75rem] font-normal uppercase tracking-[0.08em] text-white/40"
+             style={statFont}>
             Zaoszczędzone miesięcznie
-          </span>
+          </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center">
-          <span
-            className="mb-3 flex items-center justify-center [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
-            style={{
-              ...statFont,
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              fontWeight: 700,
-              letterSpacing: "-0.04em",
-              color: "#D4AF37",
-            }}
-          >
-            <NumberTicker value={0} />
-          </span>
-          <span
-            style={{
-              ...statFont,
-              fontSize: "0.8rem",
-              fontWeight: 400,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              color: "rgba(255, 255, 255, 0.45)",
-            }}
-          >
+        {/* 0 leadów */}
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex items-baseline gap-[0.15em]">
+            <NumberTicker
+              value={0}
+              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#D4AF37] [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
+              style={statFont}
+            />
+          </div>
+          <p className="text-[0.75rem] font-normal uppercase tracking-[0.08em] text-white/40"
+             style={statFont}>
             Utraconych leadów
-          </span>
+          </p>
         </div>
 
-        <div className="flex flex-col items-center justify-center">
-          <span
-            className="mb-3 flex items-center justify-center [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
-            style={{
-              ...statFont,
-              fontSize: "clamp(2.5rem, 5vw, 4rem)",
-              fontWeight: 700,
-              letterSpacing: "-0.04em",
-              color: "#D4AF37",
-            }}
-          >
-            <NumberTicker value={100} />%
-          </span>
-          <span
-            style={{
-              ...statFont,
-              fontSize: "0.8rem",
-              fontWeight: 400,
-              letterSpacing: "0.06em",
-              textTransform: "uppercase",
-              color: "rgba(255, 255, 255, 0.45)",
-            }}
-          >
+        {/* 100% */}
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex items-baseline gap-[0.15em]">
+            <NumberTicker
+              value={100}
+              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#D4AF37] [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
+              style={statFont}
+            />
+            <span
+              style={{
+                fontSize: "0.55em",
+                fontWeight: 500,
+                letterSpacing: "-0.02em",
+                color: "#C0C0C0",
+                opacity: 0.72,
+                lineHeight: 1,
+                paddingBottom: "0.15em",
+              }}
+            >
+              %
+            </span>
+          </div>
+          <p className="text-[0.75rem] font-normal uppercase tracking-[0.08em] text-white/40"
+             style={statFont}>
             Dyskrecji
-          </span>
+          </p>
         </div>
 
       </div>

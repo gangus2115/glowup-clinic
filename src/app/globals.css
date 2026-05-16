@@ -163,6 +163,8 @@ body {
 /* ─── CTA Button — Silver/Gold gradient border shimmer ─── */
 .cta-button {
   position: relative;
+  overflow: hidden;
+  isolation: isolate;
   padding: 0.85em 2.2em;
   font-size: 1rem;
   font-weight: 600;
@@ -207,10 +209,20 @@ body {
 .cta-button::after {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: 12px;
-  background: rgba(212, 175, 55, 0.06);
-  z-index: -1;
+  top: 0;
+  left: -110%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 20%,
+    rgba(240, 230, 210, 0.13) 50%,
+    transparent 80%
+  );
+  transform: skewX(-20deg);
+  animation: ctaSweep 3.5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 1;
 }
 
 .cta-button:hover {
@@ -220,10 +232,22 @@ body {
     0 0 48px rgba(192, 192, 192, 0.08);
 }
 
+.cta-button:hover::after {
+  animation: ctaSweep 1.2s ease-in-out infinite;
+}
+
 @keyframes borderShimmer {
   0%   { background-position: 0% 50%; }
   50%  { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
+}
+
+@keyframes ctaSweep {
+  0%   { left: -110%; opacity: 0; }
+  10%  { opacity: 1; }
+  60%  { left: 120%;  opacity: 1; }
+  65%  { opacity: 0; }
+  100% { left: 120%;  opacity: 0; }
 }
 
 /* ─── Bento Card — Silver/Gold glassmorphism + hover glow ─── */
