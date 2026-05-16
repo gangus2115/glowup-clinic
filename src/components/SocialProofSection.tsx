@@ -1,5 +1,6 @@
 import React from "react";
 import { NumberTicker } from "@/components/ui/number-ticker";
+import { motion } from "framer-motion";
 
 const statFont: React.CSSProperties = {
   fontFamily: "'Inter', ui-sans-serif, system-ui, sans-serif",
@@ -7,69 +8,99 @@ const statFont: React.CSSProperties = {
 
 export function SocialProofSection() {
   return (
-    <section
-      className="py-16 px-6 md:px-12 border-t border-white/5"
-      style={{ background: "#0a0a0f" }}
+    <motion.section
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
+      className="relative py-24 px-6 overflow-hidden bg-[#0a0a0f]"
     >
-      <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-center gap-10 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
+      {/* Subtle radial silver glow */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 70% 50% at 50% 50%, rgba(192,192,192,0.06) 0%, transparent 70%)",
+        }}
+      />
 
-        <div className="w-full md:w-1/3 flex flex-col items-center justify-center py-4 text-center">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center max-w-4xl mx-auto relative z-10">
+
+        <div className="flex flex-col items-center justify-center">
           <span
-            className="text-4xl mb-2 flex items-center justify-center [text-shadow:0_0_15px_rgba(168,85,247,0.4)]"
-            style={{ ...statFont, fontWeight: 700, letterSpacing: "-0.03em", color: "#ffffff" }}
+            className="mb-3 flex items-center justify-center [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
+            style={{
+              ...statFont,
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.04em",
+              color: "#D4AF37",
+            }}
           >
             <NumberTicker value={120} />h
           </span>
           <span
-            className="uppercase"
             style={{
               ...statFont,
               fontSize: "0.8rem",
               fontWeight: 400,
-              letterSpacing: "0.01em",
-              color: "rgba(255,255,255,0.55)",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: "rgba(255, 255, 255, 0.45)",
             }}
           >
             Zaoszczędzone miesięcznie
           </span>
         </div>
 
-        <div className="w-full md:w-1/3 flex flex-col items-center justify-center py-4 text-center">
+        <div className="flex flex-col items-center justify-center">
           <span
-            className="text-4xl mb-2 flex items-center justify-center [text-shadow:0_0_15px_rgba(168,85,247,0.4)]"
-            style={{ ...statFont, fontWeight: 700, letterSpacing: "-0.03em", color: "#ffffff" }}
+            className="mb-3 flex items-center justify-center [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
+            style={{
+              ...statFont,
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.04em",
+              color: "#D4AF37",
+            }}
           >
             <NumberTicker value={0} />
           </span>
           <span
-            className="uppercase"
             style={{
               ...statFont,
               fontSize: "0.8rem",
               fontWeight: 400,
-              letterSpacing: "0.01em",
-              color: "rgba(255,255,255,0.55)",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: "rgba(255, 255, 255, 0.45)",
             }}
           >
             Utraconych leadów
           </span>
         </div>
 
-        <div className="w-full md:w-1/3 flex flex-col items-center justify-center py-4 text-center">
+        <div className="flex flex-col items-center justify-center">
           <span
-            className="text-4xl mb-2 flex items-center justify-center [text-shadow:0_0_15px_rgba(168,85,247,0.4)]"
-            style={{ ...statFont, fontWeight: 700, letterSpacing: "-0.03em", color: "#ffffff" }}
+            className="mb-3 flex items-center justify-center [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
+            style={{
+              ...statFont,
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
+              fontWeight: 700,
+              letterSpacing: "-0.04em",
+              color: "#D4AF37",
+            }}
           >
             <NumberTicker value={100} />%
           </span>
           <span
-            className="uppercase"
             style={{
               ...statFont,
               fontSize: "0.8rem",
               fontWeight: 400,
-              letterSpacing: "0.01em",
-              color: "rgba(255,255,255,0.55)",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase",
+              color: "rgba(255, 255, 255, 0.45)",
             }}
           >
             Dyskrecji
@@ -77,6 +108,6 @@ export function SocialProofSection() {
         </div>
 
       </div>
-    </section>
+    </motion.section>
   );
 }

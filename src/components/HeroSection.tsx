@@ -50,7 +50,7 @@ const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
           onClick={onOpenDrawer}
           whileHover={{
             scale: 1.03,
-            boxShadow: "0 0 24px rgba(232, 28, 255, 0.12)",
+            boxShadow: "0 0 24px rgba(212, 175, 55, 0.12)",
           }}
           transition={{ duration: 0.3, ease: "circOut" }}
           className={`pointer-events-auto absolute ${widget.position} backdrop-blur-md border border-white/10 rounded-xl p-2.5 lg:p-4 flex items-center gap-2.5 lg:gap-4 cursor-pointer max-w-[85vw] lg:max-w-none`}
@@ -258,7 +258,7 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-screen flex flex-col lg:flex-row bg-[#0a0a0a] selection:bg-purple-500/30 overflow-hidden">
+      <section className="relative min-h-screen flex flex-col lg:flex-row bg-[#0a0a0f] selection:bg-[#D4AF37]/20 overflow-hidden">
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#e2d9f3" />
 
         {/* Left Content Area */}
@@ -292,18 +292,13 @@ export function HeroSection() {
               dba o rezerwacje i komfort pacjentów w standardzie premium.
             </p>
 
-            {/* Shimmer CTA Button */}
+            {/* CTA Button — gradient border shimmer */}
             <button
               onClick={() => setIsDrawerOpen(true)}
-              className="group relative inline-flex items-center justify-center px-8 py-4 font-light tracking-[0.15em] text-sm uppercase text-white bg-stone-900 rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_32px_rgba(168,85,247,0.35)]"
+              className="cta-button"
             >
-              <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-100%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(100%)]">
-                <div className="relative h-full w-8 bg-white/20" />
-              </div>
-              <span className="relative z-10 flex items-center gap-3">
-                Rozpocznij test
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              </span>
+              Rozpocznij test
+              <ArrowRight className="w-4 h-4" style={{ flexShrink: 0 }} />
             </button>
           </motion.div>
         </div>
@@ -337,7 +332,7 @@ export function HeroSection() {
               </span>
               <button
                 onClick={() => setIsDrawerOpen(true)}
-                className="flex items-center justify-center bg-violet-600/80 text-white rounded-full p-3 shadow-md active:scale-95 transition-transform"
+                className="flex items-center justify-center bg-[#D4AF37]/80 text-[#0a0a0f] rounded-full p-3 shadow-md active:scale-95 transition-transform"
               >
                 <MessageCircle className="w-5 h-5 stroke-[1.5]" />
               </button>
@@ -371,14 +366,14 @@ export function HeroSection() {
             ...CHAT_FONT,
           }}
         >
-          <BorderBeam colorFrom="#a855f7" colorTo="#ffffff" duration={12} size={250} />
+          <BorderBeam colorFrom="#D4AF37" colorTo="#C0C0C0" duration={12} size={250} />
 
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10 bg-white/5">
             <div className="flex items-center gap-4">
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#2a1a3e] to-[#3d2260] overflow-hidden flex items-center justify-center shadow-inner border border-white/20">
-                  <Sparkles className="w-5 h-5 text-white/60 stroke-[1.5]" />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#1a1406] to-[#2d2410] overflow-hidden flex items-center justify-center shadow-inner border border-[#D4AF37]/20">
+                  <Sparkles className="w-5 h-5 text-[#D4AF37]/60 stroke-[1.5]" />
                 </div>
                 <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-[#0a0a0f] rounded-full"></div>
               </div>
@@ -408,7 +403,7 @@ export function HeroSection() {
               const formattedContent = msg.content
                 .replace(
                   /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-                  '<a href="$2" target="_blank" rel="noopener noreferrer" class="font-medium text-violet-300 border-b border-violet-400/30 hover:border-violet-300 transition-colors">$1</a>'
+                  '<a href="$2" target="_blank" rel="noopener noreferrer" class="font-medium text-[#D4AF37] border-b border-[#D4AF37]/30 hover:border-[#D4AF37] transition-colors">$1</a>'
                 )
                 .replace(/\n/g, "<br/>");
 
@@ -419,10 +414,11 @@ export function HeroSection() {
                     }`}
                 >
                   <div
-                    className={`rounded-xl px-4 py-3 min-h-[52px] flex items-center max-w-[85%] ${msg.role === "user"
-                      ? "bg-violet-600/30 border border-violet-400/20 text-white/90 rounded-tr-sm"
-                      : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
-                      }`}
+                    className={`rounded-xl px-4 py-3 min-h-[52px] flex items-center max-w-[85%] ${
+                      msg.role === "user"
+                        ? "bg-[#D4AF37]/15 border border-[#D4AF37]/20 text-white/90 rounded-tr-sm"
+                        : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
+                    }`}
                     style={{
                       fontSize: "0.9rem",
                       lineHeight: "1.6",
@@ -483,7 +479,7 @@ export function HeroSection() {
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isTyping}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-violet-600/80 rounded-full flex items-center justify-center hover:bg-violet-500/80 transition-colors shadow-md disabled:bg-white/10 disabled:cursor-not-allowed"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#D4AF37]/70 rounded-full flex items-center justify-center hover:bg-[#D4AF37]/90 transition-colors shadow-md disabled:bg-white/10 disabled:cursor-not-allowed"
               >
                 <ArrowRight className="w-4 h-4 text-white -rotate-45 stroke-[1.5]" />
               </button>
