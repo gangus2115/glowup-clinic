@@ -1,6 +1,6 @@
 import React from "react";
 import { NumberTicker } from "@/components/ui/number-ticker";
-import { motion } from "framer-motion";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const statFont: React.CSSProperties = {
   fontFamily: "'Inter', ui-sans-serif, system-ui, sans-serif",
@@ -8,13 +8,7 @@ const statFont: React.CSSProperties = {
 
 export function SocialProofSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-      className="relative py-24 px-6 overflow-hidden bg-[#0a0a0f]"
-    >
+    <ScrollReveal className="relative py-24 px-6 overflow-hidden bg-[#0a0a0f]">
       {/* Subtle radial silver glow */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -108,6 +102,6 @@ export function SocialProofSection() {
         </div>
 
       </div>
-    </motion.section>
+    </ScrollReveal>
   );
 }

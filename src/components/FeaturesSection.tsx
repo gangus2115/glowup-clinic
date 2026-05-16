@@ -1,16 +1,10 @@
 import React from "react";
 import { Calendar, ShieldCheck, AlertCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export function FeaturesSection() {
   return (
-    <motion.section
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }}
-      className="w-full bg-[#0a0a0f] px-4 py-20"
-    >
+    <ScrollReveal className="w-full bg-[#0a0a0f] px-4 py-20">
       <div className="max-w-5xl mx-auto">
         <h2
           className="text-center text-2xl font-semibold tracking-tight text-white/90 mb-12"
@@ -68,6 +62,6 @@ export function FeaturesSection() {
 
         </div>
       </div>
-    </motion.section>
+    </ScrollReveal>
   );
 }
