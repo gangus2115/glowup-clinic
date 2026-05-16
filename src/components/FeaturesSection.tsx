@@ -4,145 +4,73 @@ import { Calendar, ShieldCheck, AlertCircle } from "lucide-react";
 export function FeaturesSection() {
   return (
     <section className="w-full max-w-5xl mx-auto px-6 py-16 relative z-10">
-      <h2 className="text-center text-2xl font-semibold tracking-tight text-white/90 mb-10"
-          style={{ fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif" }}>
+      <h2
+        className="text-center text-2xl font-semibold tracking-tight text-white/90 mb-10"
+        style={{ fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif" }}
+      >
         Zarządzanie na najwyższym poziomie.
       </h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 grid-rows-none md:grid-rows-2 gap-4 md:h-[480px]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-5xl mx-auto px-4">
 
-        {/* LEWA — duża karta, pełna wysokość */}
-        <div
-          className="md:row-span-2 rounded-2xl p-7 flex flex-col justify-between relative overflow-hidden"
-          style={{
-            background: "rgba(10, 10, 18, 0.60)",
-            backdropFilter: "blur(20px) saturate(160%)",
-            WebkitBackdropFilter: "blur(20px) saturate(160%)",
-            border: "1px solid rgba(255, 255, 255, 0.09)",
-            boxShadow: "0 0 0 1px rgba(0,0,0,0.3), 0 12px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.07)",
-          }}
-        >
-          <div className="relative z-10">
-            <div className="mb-5 w-10 h-10 flex items-center justify-center rounded-xl"
-                 style={{ background: "rgba(168, 85, 247, 0.15)", border: "1px solid rgba(168,85,247,0.25)" }}>
-              <ShieldCheck className="w-5 h-5 text-purple-300" />
-            </div>
-            <h3
-              className="mb-3"
-              style={{
-                fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
-                fontSize: "1.2rem",
-                fontWeight: 600,
-                lineHeight: 1.3,
-                letterSpacing: "-0.02em",
-                color: "rgba(255,255,255,0.93)",
-              }}
-            >
-              Bezpieczeństwo Pacjenta
-            </h3>
-            <p
-              style={{
-                fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
-                fontSize: "0.9rem",
-                fontWeight: 400,
-                lineHeight: 1.7,
-                color: "rgba(255,255,255,0.52)",
-              }}
-            >
-              Zautomatyzowany wywiad medyczny. Weronika bezbłędnie wyłapuje przeciwwskazania do zabiegów jeszcze przed potwierdzeniem wizyty.
-            </p>
-          </div>
-          {/* Subtelny glow w rogu — dekoracyjny */}
+        {/* Niezawodny Kalendarz */}
+        <div className="bento-card flex flex-col gap-4 cursor-default relative overflow-hidden">
           <div
-            className="absolute bottom-0 left-0 w-48 h-48 rounded-full pointer-events-none"
+            className="w-9 h-9 flex items-center justify-center rounded-xl shrink-0"
             style={{
-              background: "radial-gradient(circle, rgba(168,85,247,0.12) 0%, transparent 70%)",
-              filter: "blur(24px)",
+              background: "rgba(168, 85, 247, 0.15)",
+              border: "1px solid rgba(168,85,247,0.25)",
             }}
-          />
-        </div>
-
-        {/* PRAWA GÓRA — Niezawodny Kalendarz */}
-        <div
-          className="rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden"
-          style={{
-            background: "rgba(10, 10, 18, 0.60)",
-            backdropFilter: "blur(20px) saturate(160%)",
-            WebkitBackdropFilter: "blur(20px) saturate(160%)",
-            border: "1px solid rgba(255, 255, 255, 0.09)",
-            boxShadow: "0 0 0 1px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.07)",
-          }}
-        >
+          >
+            <Calendar className="w-[22px] h-[22px] text-white/70" />
+          </div>
           <div>
-            <div className="mb-4 w-9 h-9 flex items-center justify-center rounded-xl"
-                 style={{ background: "rgba(168, 85, 247, 0.15)", border: "1px solid rgba(168,85,247,0.25)" }}>
-              <Calendar className="w-4 h-4 text-purple-300" />
-            </div>
-            <h3
-              className="mb-2"
-              style={{
-                fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
-                fontSize: "1.05rem",
-                fontWeight: 600,
-                lineHeight: 1.3,
-                letterSpacing: "-0.015em",
-                color: "rgba(255,255,255,0.93)",
-              }}
-            >
+            <h3 className="text-[1.05rem] font-semibold text-white/90 tracking-tight leading-snug">
               Niezawodny Kalendarz
             </h3>
-            <p
-              style={{
-                fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
-                fontSize: "0.85rem",
-                fontWeight: 400,
-                lineHeight: 1.65,
-                color: "rgba(255,255,255,0.52)",
-              }}
-            >
+            <p className="text-[0.85rem] text-white/55 leading-relaxed mt-2">
               Inteligentne zarządzanie rezerwacjami 24/7. System sam układa wizyty, eliminując puste okienka.
             </p>
           </div>
         </div>
 
-        {/* PRAWA DÓŁ — Ochrona Biznesu */}
-        <div
-          className="rounded-2xl p-6 flex flex-col justify-between relative overflow-hidden"
-          style={{
-            background: "rgba(10, 10, 18, 0.60)",
-            backdropFilter: "blur(20px) saturate(160%)",
-            WebkitBackdropFilter: "blur(20px) saturate(160%)",
-            border: "1px solid rgba(255, 255, 255, 0.09)",
-            boxShadow: "0 0 0 1px rgba(0,0,0,0.3), 0 8px 28px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.07)",
-          }}
-        >
+        {/* Bezpieczeństwo Pacjenta */}
+        <div className="bento-card flex flex-col gap-4 cursor-default relative overflow-hidden">
+          <div
+            className="w-9 h-9 flex items-center justify-center rounded-xl shrink-0"
+            style={{
+              background: "rgba(168, 85, 247, 0.15)",
+              border: "1px solid rgba(168,85,247,0.25)",
+            }}
+          >
+            <ShieldCheck className="w-[22px] h-[22px] text-white/70" />
+          </div>
           <div>
-            <div className="mb-4 w-9 h-9 flex items-center justify-center rounded-xl"
-                 style={{ background: "rgba(168, 85, 247, 0.15)", border: "1px solid rgba(168,85,247,0.25)" }}>
-              <AlertCircle className="w-4 h-4 text-purple-300" />
-            </div>
-            <h3
-              className="mb-2"
-              style={{
-                fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
-                fontSize: "1.05rem",
-                fontWeight: 600,
-                lineHeight: 1.3,
-                letterSpacing: "-0.015em",
-                color: "rgba(255,255,255,0.93)",
-              }}
-            >
+            <h3 className="text-[1.05rem] font-semibold text-white/90 tracking-tight leading-snug">
+              Bezpieczeństwo Pacjenta
+            </h3>
+            <p className="text-[0.85rem] text-white/55 leading-relaxed mt-2">
+              Zautomatyzowany wywiad medyczny. Weronika bezbłędnie wyłapuje przeciwwskazania do zabiegów jeszcze przed potwierdzeniem wizyty.
+            </p>
+          </div>
+        </div>
+
+        {/* Ochrona Biznesu */}
+        <div className="bento-card flex flex-col gap-4 cursor-default relative overflow-hidden">
+          <div
+            className="w-9 h-9 flex items-center justify-center rounded-xl shrink-0"
+            style={{
+              background: "rgba(168, 85, 247, 0.15)",
+              border: "1px solid rgba(168,85,247,0.25)",
+            }}
+          >
+            <AlertCircle className="w-[22px] h-[22px] text-white/70" />
+          </div>
+          <div>
+            <h3 className="text-[1.05rem] font-semibold text-white/90 tracking-tight leading-snug">
               Ochrona Biznesu
             </h3>
-            <p
-              style={{
-                fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
-                fontSize: "0.85rem",
-                fontWeight: 400,
-                lineHeight: 1.65,
-                color: "rgba(255,255,255,0.52)",
-              }}
-            >
+            <p className="text-[0.85rem] text-white/55 leading-relaxed mt-2">
               System wczesnego reagowania. Natychmiastowe powiadomienia SMS w przypadku sytuacji kryzysowych.
             </p>
           </div>
@@ -152,4 +80,3 @@ export function FeaturesSection() {
     </section>
   );
 }
-
