@@ -63,7 +63,7 @@ const BentoCard = ({
     <div style={{ padding: "28px 24px", position: "relative", zIndex: 10 }}>
       <div className="pointer-events-none flex transform-gpu flex-col transition-all duration-300 lg:group-hover:-translate-y-10" style={{ gap: "14px" }}>
         <Icon className="h-12 w-12 origin-left transform-gpu transition-all duration-300 ease-in-out group-hover:scale-75" style={{ color: "rgba(255, 255, 255, 0.92)" }} />
-        <div style={{ display: "flex", flexDirection: "col", gap: "0" }}>
+        <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
           <h3 style={{ fontSize: "1.125rem", fontWeight: 600, lineHeight: 1.3, letterSpacing: "-0.01em", color: "rgba(255, 255, 255, 0.92)", marginBottom: "10px" }}>
             {name}
           </h3>
