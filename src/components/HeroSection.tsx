@@ -4,38 +4,8 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, X, Calendar, ShieldAlert, Sparkles, MessageCircle } from "lucide-react";
 
-// Liquid Gold Mesh Gradient Component
-const LiquidGoldBackground = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden bg-[#FDFBF7]">
-      <motion.div
-        className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full mix-blend-multiply filter blur-[100px] opacity-70"
-        style={{ backgroundColor: "#F3E5D8" }}
-        animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute top-[20%] right-[-10%] w-[70%] h-[70%] rounded-full mix-blend-multiply filter blur-[120px] opacity-60"
-        style={{ backgroundColor: "#EAD6C0" }}
-        animate={{ x: [0, -80, 0], y: [0, 100, 0], scale: [1, 1.2, 1] }}
-        transition={{ duration: 20, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      />
-      <motion.div
-        className="absolute bottom-[-20%] left-[20%] w-[50%] h-[50%] rounded-full mix-blend-multiply filter blur-[90px] opacity-40"
-        style={{ backgroundColor: "#d4af37" }}
-        animate={{ x: [0, 50, 0], y: [0, -80, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 18, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-      />
-      
-      <div 
-        className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`
-        }}
-      />
-    </div>
-  );
-};
+import { Spotlight } from "@/components/ui/spotlight";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 // Static Interactive Widgets Component
 const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
@@ -239,10 +209,11 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-screen flex flex-col lg:flex-row bg-[#FDFBF7] selection:bg-[#EAD6C0]/50">
+      <section className="relative min-h-screen flex flex-col lg:flex-row bg-[#0a0a0a] selection:bg-purple-500/30 overflow-hidden">
+        <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#e2d9f3" />
         
         {/* Left Content Area - Sterile & Elegant */}
-        <div className="relative z-10 w-full lg:w-[50%] flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-24 lg:py-0 bg-[#FDFBF7]/80 backdrop-blur-sm lg:bg-transparent lg:backdrop-blur-none border-r border-stone-200/50">
+        <div className="relative z-10 w-full lg:w-[50%] flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-24 lg:py-0 border-r border-white/5">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -251,39 +222,41 @@ export function HeroSection() {
           >
             {/* Subtle Label */}
             <div className="mb-12 flex items-center gap-4">
-              <div className="h-[1px] w-8 bg-neutral-300"></div>
-              <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-neutral-500">
+              <div className="h-[1px] w-8 bg-stone-700"></div>
+              <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-stone-400">
                 GlowUp Beauty
               </span>
             </div>
 
-            {/* Headline - Ultra thin */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extralight tracking-tight text-neutral-800 mb-10 leading-[1.05]">
-              GlowUp. <br />
-              <span className="text-neutral-500 italic font-light">Nowy Wymiar Obsługi.</span>
+            {/* Headline - Editorial Feel */}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extralight mb-10 tracking-[-0.03em] leading-[1.05]">
+              <span className="bg-gradient-to-br from-white to-white/75 bg-clip-text text-transparent">GlowUp.</span> <br />
+              <span className="text-stone-400 italic font-light">Nowy Wymiar Obsługi.</span>
             </h1>
 
             {/* Paragraph */}
-            <p className="text-base md:text-lg text-neutral-500 font-light leading-relaxed mb-16 max-w-md tracking-wide">
+            <p className="text-base md:text-lg text-stone-400 font-light leading-relaxed mb-16 max-w-md tracking-wide">
               Poznaj Weronikę – Twoją Wirtualną Asystentkę. Zobacz, jak interaktywna inteligencja dba o rezerwacje i komfort pacjentów w standardzie premium.
             </p>
 
-            {/* Minimalist CTA */}
+            {/* Shimmer CTA Button */}
             <button 
               onClick={() => setIsDrawerOpen(true)}
-              className="group relative inline-flex items-center gap-3 text-neutral-800 font-light tracking-[0.15em] text-sm uppercase overflow-hidden pb-2"
+              className="group relative inline-flex items-center justify-center px-8 py-4 font-light tracking-[0.15em] text-sm uppercase text-white bg-stone-900 rounded-full overflow-hidden transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_0_32px_rgba(168,85,247,0.35)]"
             >
-              <span>Rozpocznij test</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-800 transform origin-left scale-x-100 transition-transform duration-500 group-hover:scale-x-0"></span>
-              <span className="absolute bottom-0 left-0 w-full h-[1px] bg-neutral-300 transform origin-right scale-x-0 transition-transform duration-500 group-hover:scale-x-100"></span>
+              <div className="absolute inset-0 flex h-full w-full justify-center [transform:skew(-12deg)_translateX(-100%)] group-hover:duration-1000 group-hover:[transform:skew(-12deg)_translateX(100%)]">
+                <div className="relative h-full w-8 bg-white/20" />
+              </div>
+              <span className="relative z-10 flex items-center gap-3">
+                Rozpocznij test
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+              </span>
             </button>
           </motion.div>
         </div>
 
-        {/* Right Liquid Gold Area */}
+        {/* Right Area */}
         <div className="relative w-full lg:w-[50%] min-h-[50vh] lg:min-h-screen">
-          <LiquidGoldBackground />
           <InteractiveWidgets onOpenDrawer={() => setIsDrawerOpen(true)} />
         </div>
         
@@ -330,9 +303,10 @@ export function HeroSection() {
           animate={{ x: isDrawerOpen ? 0 : "100%" }}
           initial={{ x: "100%" }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className={`absolute top-0 right-0 bottom-0 w-full md:w-[450px] bg-white/50 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-l border-white/60 flex flex-col ${isDrawerOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+          className={`absolute top-0 right-0 bottom-0 w-full md:w-[450px] bg-white/50 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-l border-white/60 flex flex-col overflow-hidden ${isDrawerOpen ? "pointer-events-auto" : "pointer-events-none"}`}
           style={{ WebkitBackdropFilter: "blur(24px)", backgroundColor: "rgba(255, 255, 255, 0.6)" }}
         >
+          <BorderBeam colorFrom="#a855f7" colorTo="#ffffff" duration={12} size={250} />
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-stone-200/50 bg-white/20">
             <div className="flex items-center gap-4">
