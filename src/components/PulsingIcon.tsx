@@ -14,7 +14,7 @@ export default function PulsingIcon({
 }: PulsingIconProps) {
   return (
     <motion.span
-      animate={{ opacity: [1, 0.55, 1] }}
+      animate={{ opacity: [1, 0.52, 1] }}
       transition={{
         duration,
         repeat: Infinity,

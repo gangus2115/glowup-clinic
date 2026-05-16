@@ -22,7 +22,7 @@ const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
     },
     {
       text: "Wykryto przeciwwskazanie. Konsultacja w toku...",
-      icon: <PulsingIcon duration={3.2}><ShieldAlert className="w-3 h-3 lg:w-4 lg:h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
+      icon: <PulsingIcon duration={3.3}><ShieldAlert className="w-3 h-3 lg:w-4 lg:h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
       position: "top-[45%] lg:top-[50%] right-[5%]",
     },
     {
@@ -298,8 +298,8 @@ export function HeroSection() {
               onClick={() => setIsDrawerOpen(true)}
               className="cta-button"
             >
-              Rozpocznij test
-              <ArrowRight className="w-4 h-4" style={{ flexShrink: 0 }} />
+              <span className="cta-text">Rozpocznij test</span>
+              <ArrowRight className="w-4 h-4" style={{ flexShrink: 0, color: "#D4AF37" }} />
             </button>
           </motion.div>
         </div>
