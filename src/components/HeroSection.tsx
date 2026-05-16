@@ -304,7 +304,7 @@ export function HeroSection() {
           initial={{ x: "100%" }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
           className={`absolute top-0 right-0 bottom-0 w-full md:w-[450px] bg-white/50 backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border-l border-white/60 flex flex-col overflow-hidden ${isDrawerOpen ? "pointer-events-auto" : "pointer-events-none"}`}
-          style={{ WebkitBackdropFilter: "blur(24px)", backgroundColor: "rgba(255, 255, 255, 0.6)" }}
+          style={{ WebkitBackdropFilter: "blur(24px)", backgroundColor: "rgba(255, 255, 255, 0.6)", fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, -apple-system, sans-serif" }}
         >
           <BorderBeam colorFrom="#a855f7" colorTo="#ffffff" duration={12} size={250} />
           {/* Header */}
@@ -339,11 +339,11 @@ export function HeroSection() {
 
               return (
                 <div key={msg.id} className={`flex w-full ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
-                  <div className={`backdrop-blur-2xl border shadow-sm p-5 rounded-3xl text-sm font-light leading-relaxed min-h-[60px] flex items-center ${
+                  <div className={`backdrop-blur-2xl border shadow-sm p-5 rounded-3xl min-h-[60px] flex items-center ${
                     msg.role === "user" 
                       ? "bg-stone-900 text-white border-stone-800 rounded-tr-md max-w-[85%]" 
                       : "bg-gradient-to-br from-white/90 to-[#FDFBF7]/90 border-white text-stone-700 rounded-tl-md max-w-[85%]"
-                  }`} style={{ WebkitBackdropFilter: "blur(16px)", backgroundColor: msg.role === "user" ? "#1c1917" : "rgba(255, 255, 255, 0.9)" }}>
+                  }`} style={{ WebkitBackdropFilter: "blur(16px)", backgroundColor: msg.role === "user" ? "#1c1917" : "rgba(255, 255, 255, 0.9)", fontSize: "0.9rem", lineHeight: "1.6", letterSpacing: "0em", fontWeight: 400 }}>
                     <div dangerouslySetInnerHTML={{ __html: formattedContent }} />
                   </div>
                 </div>
