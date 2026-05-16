@@ -12,67 +12,51 @@ const CHAT_FONT: React.CSSProperties = {
   fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
 };
 
-// Static Interactive Widgets Component
-const InteractiveWidgets = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
-  const widgets = [
+// Notification cards — normal document flow, no absolute positioning
+const NotificationCards = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
+  const cards = [
     {
       text: "Zaplanowano wizytę: Powiększanie ust (14:30)",
-      icon: <PulsingIcon duration={2.6}><Calendar className="w-3 h-3 lg:w-4 lg:h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
-      position: "top-[15%] lg:top-[25%] left-[5%]",
+      icon: <PulsingIcon duration={2.6}><Calendar className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
     },
     {
       text: "Wykryto przeciwwskazanie. Konsultacja w toku...",
-      icon: <PulsingIcon duration={3.3}><ShieldAlert className="w-3 h-3 lg:w-4 lg:h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
-      position: "top-[45%] lg:top-[50%] right-[5%]",
+      icon: <PulsingIcon duration={3.3}><ShieldAlert className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
     },
     {
       text: "Nowy lead: Wycena wdrożenia",
-      icon: <PulsingIcon duration={2.9}><Sparkles className="w-3 h-3 lg:w-4 lg:h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
-      position: "bottom-[25%] lg:bottom-[20%] left-[10%] lg:left-[15%]",
+      icon: <PulsingIcon duration={2.9}><Sparkles className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
     },
   ];
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-20">
-      <style>{`
-        @keyframes mobile-icon-pulse {
-          0%, 100% { transform: scale(1); }
-          50% { transform: scale(1.2); }
-        }
-        @media (max-width: 1023px) {
-          .mobile-icon-anim {
-            animation: mobile-icon-pulse 2.5s ease-in-out infinite;
-          }
-        }
-      `}</style>
-      {widgets.map((widget, index) => (
+    <div className="relative flex flex-col gap-3 w-full">
+      {cards.map((card, index) => (
         <motion.div
           key={index}
           onClick={onOpenDrawer}
-          whileHover={{
-            scale: 1.03,
-            boxShadow: "0 0 24px rgba(212, 175, 55, 0.12)",
-          }}
-          transition={{ duration: 0.3, ease: "circOut" }}
-          className={`pointer-events-auto absolute ${widget.position} backdrop-blur-md border border-white/10 rounded-xl px-5 py-4 flex items-center gap-2.5 lg:gap-4 cursor-pointer max-w-[85vw] lg:max-w-none`}
+          whileHover={{ scale: 1.015, boxShadow: "0 0 20px rgba(212, 175, 55, 0.10)" }}
+          transition={{ duration: 0.4, ease: "circOut" }}
+          className="w-full rounded-xl px-5 py-4 backdrop-blur-md border border-white/10 flex items-center gap-3 cursor-pointer"
           style={{
             WebkitBackdropFilter: "blur(12px)",
-            backgroundColor: "rgba(10, 10, 15, 0.70)",
+            backgroundColor: "rgba(10, 10, 15, 0.65)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.25), 0 4px 24px rgba(0,0,0,0.3)",
           }}
         >
-          <div className="mobile-icon-anim bg-white/10 p-1.5 lg:p-2 rounded-full border border-white/15 shrink-0">
-            {widget.icon}
+          <div className="bg-white/8 p-2 rounded-full border border-white/12 shrink-0">
+            {card.icon}
           </div>
           <span
-            className="leading-tight"
             style={{
               ...CHAT_FONT,
-              fontSize: "0.8rem",
+              fontSize: "0.82rem",
               fontWeight: 500,
               color: "rgba(255,255,255,0.80)",
+              lineHeight: 1.4,
             }}
           >
-            {widget.text}
+            {card.text}
           </span>
         </motion.div>
       ))}
@@ -259,54 +243,74 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative min-h-screen flex flex-col lg:flex-row bg-[#0a0a0f] selection:bg-[#D4AF37]/20 overflow-hidden">
+      <section className="relative bg-[#0a0a0f] selection:bg-[#D4AF37]/20 overflow-hidden">
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#e2d9f3" />
 
-        {/* Left Content Area */}
-        <div className="relative z-10 w-full lg:w-[50%] flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-24 lg:py-0 border-r border-white/5">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-xl"
-          >
-            {/* Subtle Label */}
-            <div className="mb-12 flex items-center gap-4">
-              <div className="h-[1px] w-8 bg-stone-700"></div>
-              <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-stone-400">
-                GlowUp Beauty
-              </span>
-            </div>
+        {/* Main two-column layout */}
+        <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16 w-full">
 
-            {/* Headline */}
-            <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-extralight mb-10 tracking-[-0.03em] leading-[1.05]">
-              <span className="bg-gradient-to-br from-white to-white/75 bg-clip-text text-transparent">
-                GlowUp.
-              </span>{" "}
-              <br />
-              <span className="text-stone-400 italic font-light">Nowy Wymiar Obsługi.</span>
-            </h1>
-
-            {/* Paragraph */}
-            <p className="text-base md:text-lg text-stone-400 font-light leading-relaxed mb-16 max-w-md tracking-wide">
-              Poznaj Weronikę – Twoją Wirtualną Asystentkę. Zobacz, jak interaktywna inteligencja
-              dba o rezerwacje i komfort pacjentów w standardzie premium.
-            </p>
-
-            {/* CTA Button — gradient border shimmer */}
-            <button
-              onClick={() => setIsDrawerOpen(true)}
-              className="cta-button"
+          {/* Left Content Area */}
+          <div className="relative z-10 w-full lg:w-[50%] flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-24 lg:py-28 border-b lg:border-b-0 lg:border-r border-white/5">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-xl"
             >
-              <span className="cta-text">Rozpocznij test</span>
-              <ArrowRight className="w-4 h-4" style={{ flexShrink: 0, color: "#D4AF37" }} />
-            </button>
-          </motion.div>
-        </div>
+              {/* Subtle Label */}
+              <div className="mb-12 flex items-center gap-4">
+                <div className="h-[1px] w-8 bg-stone-700"></div>
+                <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-stone-400">
+                  GlowUp Beauty
+                </span>
+              </div>
 
-        {/* Right Area */}
-        <div className="relative w-full lg:w-[50%] min-h-[50vh] lg:min-h-screen">
-          <InteractiveWidgets onOpenDrawer={() => setIsDrawerOpen(true)} />
+              {/* Headline — premium mixed-weight editorial */}
+              <h1
+                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-10"
+                style={{
+                  fontFamily: "'Inter', 'Geist', ui-sans-serif, system-ui, sans-serif",
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1.05,
+                }}
+              >
+                <span style={{ fontWeight: 800, color: "rgba(255,255,255,0.95)" }}>
+                  GlowUp.
+                </span>
+                <br />
+                <span
+                  style={{
+                    fontWeight: 300,
+                    color: "rgba(255,255,255,0.72)",
+                    letterSpacing: "-0.03em",
+                  }}
+                >
+                  Nowy Wymiar Obsługi.
+                </span>
+              </h1>
+
+              {/* Paragraph */}
+              <p className="text-base md:text-lg text-stone-400 font-light leading-relaxed mb-16 max-w-md tracking-wide">
+                Poznaj Weronikę – Twoją Wirtualną Asystentkę. Zobacz, jak interaktywna inteligencja
+                dba o rezerwacje i komfort pacjentów w standardzie premium.
+              </p>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => setIsDrawerOpen(true)}
+                className="cta-button"
+              >
+                <span className="cta-text">Rozpocznij test</span>
+                <ArrowRight className="w-4 h-4" style={{ flexShrink: 0, color: "#D4AF37" }} />
+              </button>
+            </motion.div>
+          </div>
+
+          {/* Right column — notification cards in normal flow */}
+          <div className="flex flex-col gap-4 w-full lg:w-auto lg:flex-1 px-6 sm:px-8 lg:px-10 lg:py-28">
+            <NotificationCards onOpenDrawer={() => setIsDrawerOpen(true)} />
+          </div>
+
         </div>
       </section>
 
