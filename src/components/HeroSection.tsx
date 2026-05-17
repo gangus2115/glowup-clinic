@@ -85,11 +85,8 @@ export function HeroSection() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [showStickyBar, setShowStickyBar] = useState(false);
   const [greeting, setGreeting] = useState("");
-
   const [hasRunOnce, setHasRunOnce] = useState(false);
-  const [messages, setMessages] = useState
-  { id: string; role: "user" | "assistant"; content: string } []
-    > ([]);
+  const [messages, setMessages] = useState<{ id: string; role: "user" | "assistant"; content: string }[]>([]);
   const [isTyping, setIsTyping] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [conversationId, setConversationId] = useState("");
@@ -263,10 +260,8 @@ export function HeroSection() {
       <section className="relative bg-[#0a0a0f] selection:bg-[#B8A179]/20 overflow-hidden">
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#e2d9f3" />
 
-        {/* Main two-column layout */}
         <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16 w-full">
 
-          {/* Left Content Area */}
           <div className="relative z-10 w-full lg:w-[50%] flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-24 lg:py-28 border-b lg:border-b-0 lg:border-r border-white/5">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -274,7 +269,6 @@ export function HeroSection() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-xl"
             >
-              {/* Subtle Label */}
               <div className="mb-12 flex items-center gap-4">
                 <div className="h-[1px] w-8 bg-stone-700"></div>
                 <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-stone-400">
@@ -282,7 +276,6 @@ export function HeroSection() {
                 </span>
               </div>
 
-              {/* Headline */}
               <h1
                 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-10"
                 style={{
@@ -306,13 +299,11 @@ export function HeroSection() {
                 </span>
               </h1>
 
-              {/* Paragraph */}
               <p className="text-base md:text-lg text-stone-400 font-light leading-relaxed mb-16 max-w-md tracking-wide">
                 Poznaj Weronikę – Twoją Wirtualną Asystentkę. Zobacz, jak interaktywna inteligencja
                 dba o rezerwacje i komfort pacjentów w standardzie premium.
               </p>
 
-              {/* CTA Button */}
               <button
                 onClick={() => setIsDrawerOpen(true)}
                 className="cta-button"
@@ -323,7 +314,6 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right column — notification cards */}
           <div className="flex flex-col gap-4 w-full lg:flex-1 lg:py-28 lg:pr-16">
             <NotificationCards onOpenDrawer={() => setIsDrawerOpen(true)} />
           </div>
@@ -331,7 +321,6 @@ export function HeroSection() {
         </div>
       </section>
 
-      {/* Mobile Sticky Bar */}
       <div
         className="md:hidden fixed bottom-0 left-0 right-0 z-[9999] pointer-events-none"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
@@ -363,9 +352,7 @@ export function HeroSection() {
         </AnimatePresence>
       </div>
 
-      {/* Drawer */}
       <div className="fixed inset-0 z-50 pointer-events-none">
-        {/* Backdrop */}
         <motion.div
           animate={{ opacity: isDrawerOpen ? 1 : 0 }}
           initial={{ opacity: 0 }}
@@ -375,7 +362,6 @@ export function HeroSection() {
             }`}
         />
 
-        {/* Drawer Panel */}
         <motion.div
           animate={{ x: isDrawerOpen ? 0 : "100%" }}
           initial={{ x: "100%" }}
@@ -390,7 +376,6 @@ export function HeroSection() {
         >
           <BorderBeam colorFrom="#B8A179" colorTo="#C0C0C0" duration={12} size={250} />
 
-          {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10 bg-white/5">
             <div className="flex items-center gap-4">
               <div className="relative">
@@ -419,7 +404,6 @@ export function HeroSection() {
             </button>
           </div>
 
-          {/* Chat Window */}
           <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
             {messages.map((msg) => {
               const formattedContent = msg.content
@@ -437,8 +421,8 @@ export function HeroSection() {
                 >
                   <div
                     className={`rounded-xl px-4 py-3 min-h-[52px] flex items-center max-w-[85%] ${msg.role === "user"
-                      ? "bg-[#B8A179]/15 border border-[#B8A179]/20 text-white/90 rounded-tr-sm"
-                      : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
+                        ? "bg-[#B8A179]/15 border border-[#B8A179]/20 text-white/90 rounded-tr-sm"
+                        : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
                       }`}
                     style={{
                       fontSize: "0.9rem",
@@ -478,7 +462,6 @@ export function HeroSection() {
             )}
           </div>
 
-          {/* Input Area */}
           <div className="p-6 border-t border-white/10 bg-black/20 backdrop-blur-2xl">
             <form onSubmit={handleSendMessage} className="relative">
               <input
