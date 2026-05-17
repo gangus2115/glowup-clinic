@@ -21,8 +21,11 @@ const NotificationCards = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
           <Calendar className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" />
         </PulsingIcon>
       ),
+      // mobile: full width flush left | desktop: top-left of right column
       className:
-        "relative w-full ml-0 lg:w-[320px] lg:ml-0 lg:mt-8 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
+        "relative w-full ml-0 " +
+        "lg:absolute lg:w-[300px] lg:top-[8%] lg:left-[0%] lg:ml-0 " +
+        "rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
     },
     {
       text: "Wykryto przeciwwskazanie. Konsultacja w toku...",
@@ -31,8 +34,11 @@ const NotificationCards = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
           <ShieldAlert className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" />
         </PulsingIcon>
       ),
+      // mobile: indented ml-8 | desktop: middle-right, pushed far right
       className:
-        "relative w-full ml-8 lg:w-[320px] lg:ml-24 lg:mt-6 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
+        "relative w-full ml-8 " +
+        "lg:absolute lg:w-[320px] lg:top-[46%] lg:right-[-2%] lg:ml-0 " +
+        "rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
     },
     {
       text: "Nowy lead: Wycena wdrożenia",
@@ -41,18 +47,22 @@ const NotificationCards = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
           <Sparkles className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" />
         </PulsingIcon>
       ),
+      // mobile: full width flush left | desktop: bottom, horizontally between card1 and card2
       className:
-        "relative w-full ml-0 lg:w-[320px] lg:ml-6 lg:mt-6 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
+        "relative w-full ml-0 " +
+        "lg:absolute lg:w-[280px] lg:bottom-[10%] lg:left-[18%] lg:ml-0 " +
+        "rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
     },
   ];
 
   return (
-    <div className="flex flex-col gap-3 w-full">
+    // mobile: normal flex column | desktop: tall relative container for absolute children
+    <div className="flex flex-col gap-3 w-full lg:block lg:relative lg:h-[520px] lg:w-full">
       {cards.map((card, index) => (
         <motion.div
           key={index}
           onClick={onOpenDrawer}
-          whileHover={{ scale: 1.015, boxShadow: "0 0 20px rgba(184, 161, 121, 0.10)" }}
+          whileHover={{ scale: 1.015, boxShadow: "0 0 20px rgba(184,161,121,0.10)" }}
           transition={{ duration: 0.4, ease: "circOut" }}
           className={`${card.className} cursor-pointer`}
           style={{
@@ -102,29 +112,22 @@ export function HeroSection() {
         "Dobry wieczór. Nawet po godzinach pracy kliniki jestem tu dla Ciebie. W czym pomóc?"
       );
 
-    const handleScroll = () => {
-      setShowStickyBar(window.scrollY > 80);
-    };
+    const handleScroll = () => setShowStickyBar(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     if (!isDrawerOpen || !greeting) return;
-
     let timeout: NodeJS.Timeout;
     let interval: NodeJS.Timeout;
 
-    if (hasRunOnce) {
-      // preserve existing messages
-    } else {
+    if (!hasRunOnce) {
       setIsTyping(true);
       setMessages([]);
-
       timeout = setTimeout(() => {
         setIsTyping(false);
         setMessages([{ id: "welcome", role: "assistant", content: "" }]);
-
         let i = 0;
         interval = setInterval(() => {
           setMessages([{ id: "welcome", role: "assistant", content: greeting.slice(0, i + 1) }]);
@@ -168,36 +171,18 @@ export function HeroSection() {
 
       if (!res.ok) {
         let errorData;
-        try {
-          errorData = await res.json();
-        } catch (err) {
-          errorData = await res.text();
-        }
+        try { errorData = await res.json(); } catch { errorData = await res.text(); }
         console.error("Backend API Error:", JSON.stringify(errorData, null, 2));
-        setMessages((prev) => [
-          ...prev,
-          {
-            id: Date.now().toString(),
-            role: "assistant",
-            content: "Przepraszam, wystąpił problem z połączeniem z serwerem.",
-          },
-        ]);
+        setMessages((prev) => [...prev, { id: Date.now().toString(), role: "assistant", content: "Przepraszam, wystąpił problem z połączeniem z serwerem." }]);
         setIsTyping(false);
         return;
       }
 
-      if (!res.body) {
-        setIsTyping(false);
-        return;
-      }
+      if (!res.body) { setIsTyping(false); return; }
 
       setIsTyping(false);
-
       const assistantMessageId = Date.now().toString();
-      setMessages((prev) => [
-        ...prev,
-        { id: assistantMessageId, role: "assistant", content: "" },
-      ]);
+      setMessages((prev) => [...prev, { id: assistantMessageId, role: "assistant", content: "" }]);
 
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
@@ -206,22 +191,15 @@ export function HeroSection() {
       while (true) {
         const { done, value } = await reader.read();
         if (done) break;
-
         buffer += decoder.decode(value, { stream: true });
         const parts = buffer.split("\n\n");
         buffer = parts.pop() || "";
-
         for (const part of parts) {
-          const lines = part.split("\n");
-          for (const line of lines) {
+          for (const line of part.split("\n")) {
             if (line.startsWith("data: ")) {
               try {
                 const data = JSON.parse(line.slice(6));
-
-                if (
-                  (data.event === "message" || data.event === "agent_message") &&
-                  data.answer
-                ) {
+                if ((data.event === "message" || data.event === "agent_message") && data.answer) {
                   setMessages((prev) =>
                     prev.map((msg) =>
                       msg.id === assistantMessageId
@@ -230,27 +208,15 @@ export function HeroSection() {
                     )
                   );
                 }
-
-                if (data.conversation_id) {
-                  setConversationId(data.conversation_id);
-                }
-              } catch (e) {
-                // silently skip malformed SSE chunks
-              }
+                if (data.conversation_id) setConversationId(data.conversation_id);
+              } catch { /* skip malformed chunks */ }
             }
           }
         }
       }
     } catch (error) {
       console.error("Fetch/TryCatch Error:", error);
-      setMessages((prev) => [
-        ...prev,
-        {
-          id: Date.now().toString(),
-          role: "assistant",
-          content: "Przepraszam, wystąpił problem z połączeniem.",
-        },
-      ]);
+      setMessages((prev) => [...prev, { id: Date.now().toString(), role: "assistant", content: "Przepraszam, wystąpił problem z połączeniem." }]);
       setIsTyping(false);
     }
   };
@@ -260,8 +226,9 @@ export function HeroSection() {
       <section className="relative bg-[#0a0a0f] selection:bg-[#B8A179]/20 overflow-hidden">
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#e2d9f3" />
 
-        <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16 w-full">
+        <div className="flex flex-col lg:flex-row items-start w-full">
 
+          {/* Left column */}
           <div className="relative z-10 w-full lg:w-[50%] flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-24 lg:py-28 border-b lg:border-b-0 lg:border-r border-white/5">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -270,7 +237,7 @@ export function HeroSection() {
               className="max-w-xl"
             >
               <div className="mb-12 flex items-center gap-4">
-                <div className="h-[1px] w-8 bg-stone-700"></div>
+                <div className="h-[1px] w-8 bg-stone-700" />
                 <span className="text-[10px] font-medium tracking-[0.3em] uppercase text-stone-400">
                   GlowUp Beauty
                 </span>
@@ -284,17 +251,9 @@ export function HeroSection() {
                   lineHeight: 1.05,
                 }}
               >
-                <span style={{ fontWeight: 800, color: "rgba(255,255,255,0.95)" }}>
-                  GlowUp.
-                </span>
+                <span style={{ fontWeight: 800, color: "rgba(255,255,255,0.95)" }}>GlowUp.</span>
                 <br />
-                <span
-                  style={{
-                    fontWeight: 300,
-                    color: "rgba(255,255,255,0.72)",
-                    letterSpacing: "-0.03em",
-                  }}
-                >
+                <span style={{ fontWeight: 300, color: "rgba(255,255,255,0.72)", letterSpacing: "-0.03em" }}>
                   Nowy Wymiar Obsługi.
                 </span>
               </h1>
@@ -304,23 +263,22 @@ export function HeroSection() {
                 dba o rezerwacje i komfort pacjentów w standardzie premium.
               </p>
 
-              <button
-                onClick={() => setIsDrawerOpen(true)}
-                className="cta-button"
-              >
+              <button onClick={() => setIsDrawerOpen(true)} className="cta-button">
                 <span className="cta-text">Rozpocznij test</span>
                 <ArrowRight className="w-4 h-4" style={{ flexShrink: 0, color: "#B8A179" }} />
               </button>
             </motion.div>
           </div>
 
-          <div className="flex flex-col gap-4 w-full lg:flex-1 lg:py-28 lg:pr-16">
+          {/* Right column — gives absolute children a coordinate system on desktop */}
+          <div className="w-full lg:flex-1 lg:relative lg:min-h-[520px] px-8 py-12 lg:px-12 lg:py-0">
             <NotificationCards onOpenDrawer={() => setIsDrawerOpen(true)} />
           </div>
 
         </div>
       </section>
 
+      {/* Mobile Sticky Bar */}
       <div
         className="md:hidden fixed bottom-0 left-0 right-0 z-[9999] pointer-events-none"
         style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
@@ -335,10 +293,7 @@ export function HeroSection() {
               className="w-full border-t border-white/10 shadow-[0_-10px_40px_rgba(0,0,0,0.3)] p-4 flex items-center justify-between pointer-events-auto backdrop-blur-md"
               style={{ WebkitBackdropFilter: "blur(16px)", backgroundColor: "rgba(10,10,15,0.90)" }}
             >
-              <span
-                className="text-sm font-medium tracking-wide"
-                style={{ ...CHAT_FONT, color: "rgba(255,255,255,0.85)" }}
-              >
+              <span className="text-sm font-medium tracking-wide" style={{ ...CHAT_FONT, color: "rgba(255,255,255,0.85)" }}>
                 Przetestuj Wirtualną Asystentkę
               </span>
               <button
@@ -352,58 +307,47 @@ export function HeroSection() {
         </AnimatePresence>
       </div>
 
+      {/* Drawer */}
       <div className="fixed inset-0 z-50 pointer-events-none">
         <motion.div
           animate={{ opacity: isDrawerOpen ? 1 : 0 }}
           initial={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
           onClick={() => setIsDrawerOpen(false)}
-          className={`absolute inset-0 bg-black/40 backdrop-blur-sm ${isDrawerOpen ? "pointer-events-auto" : "pointer-events-none"
-            }`}
+          className={`absolute inset-0 bg-black/40 backdrop-blur-sm ${isDrawerOpen ? "pointer-events-auto" : "pointer-events-none"}`}
         />
 
         <motion.div
           animate={{ x: isDrawerOpen ? 0 : "100%" }}
           initial={{ x: "100%" }}
           transition={{ type: "spring", damping: 25, stiffness: 200 }}
-          className={`absolute top-0 right-0 bottom-0 w-full md:w-[450px] backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-l border-white/10 flex flex-col overflow-hidden ${isDrawerOpen ? "pointer-events-auto" : "pointer-events-none"
-            }`}
-          style={{
-            WebkitBackdropFilter: "blur(24px)",
-            backgroundColor: "rgba(10, 10, 15, 0.88)",
-            ...CHAT_FONT,
-          }}
+          className={`absolute top-0 right-0 bottom-0 w-full md:w-[450px] backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] border-l border-white/10 flex flex-col overflow-hidden ${isDrawerOpen ? "pointer-events-auto" : "pointer-events-none"}`}
+          style={{ WebkitBackdropFilter: "blur(24px)", backgroundColor: "rgba(10,10,15,0.88)", ...CHAT_FONT }}
         >
           <BorderBeam colorFrom="#B8A179" colorTo="#C0C0C0" duration={12} size={250} />
 
+          {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10 bg-white/5">
             <div className="flex items-center gap-4">
               <div className="relative">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#1a1406] to-[#2d2410] overflow-hidden flex items-center justify-center shadow-inner border border-[#B8A179]/20">
                   <Sparkles className="w-5 h-5 text-[#B8A179]/60 stroke-[1.5]" />
                 </div>
-                <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-[#0a0a0f] rounded-full"></div>
+                <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-[#0a0a0f] rounded-full" />
               </div>
               <div className="flex flex-col">
-                <span className="font-extralight tracking-wide text-lg text-white/90">
-                  Weronika
-                </span>
-                <span
-                  className="text-xs font-light tracking-wide"
-                  style={{ color: "rgba(255,255,255,0.40)" }}
-                >
+                <span className="font-extralight tracking-wide text-lg text-white/90">Weronika</span>
+                <span className="text-xs font-light tracking-wide" style={{ color: "rgba(255,255,255,0.40)" }}>
                   Asystentka GlowUp (Online)
                 </span>
               </div>
             </div>
-            <button
-              onClick={() => setIsDrawerOpen(false)}
-              className="p-2 hover:bg-white/10 rounded-full transition-colors"
-            >
+            <button onClick={() => setIsDrawerOpen(false)} className="p-2 hover:bg-white/10 rounded-full transition-colors">
               <X className="w-5 h-5 stroke-[1.5]" style={{ color: "rgba(255,255,255,0.40)" }} />
             </button>
           </div>
 
+          {/* Chat Window */}
           <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
             {messages.map((msg) => {
               const formattedContent = msg.content
@@ -414,22 +358,13 @@ export function HeroSection() {
                 .replace(/\n/g, "<br/>");
 
               return (
-                <div
-                  key={msg.id}
-                  className={`flex w-full ${msg.role === "user" ? "justify-end" : "justify-start"
-                    }`}
-                >
+                <div key={msg.id} className={`flex w-full ${msg.role === "user" ? "justify-end" : "justify-start"}`}>
                   <div
                     className={`rounded-xl px-4 py-3 min-h-[52px] flex items-center max-w-[85%] ${msg.role === "user"
-                        ? "bg-[#B8A179]/15 border border-[#B8A179]/20 text-white/90 rounded-tr-sm"
-                        : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
+                      ? "bg-[#B8A179]/15 border border-[#B8A179]/20 text-white/90 rounded-tr-sm"
+                      : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
                       }`}
-                    style={{
-                      fontSize: "0.9rem",
-                      lineHeight: "1.6",
-                      letterSpacing: "0em",
-                      fontWeight: 400,
-                    }}
+                    style={{ fontSize: "0.9rem", lineHeight: "1.6", letterSpacing: "0em", fontWeight: 400 }}
                   >
                     <div dangerouslySetInnerHTML={{ __html: formattedContent }} />
                   </div>
@@ -441,27 +376,21 @@ export function HeroSection() {
               <div className="flex w-full justify-start">
                 <div className="bg-white/5 border border-white/10 text-white/80 rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%] min-h-[52px] flex items-center">
                   <div className="flex items-center gap-1.5 px-2">
-                    <motion.div
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ repeat: Infinity, duration: 0.6, delay: 0 }}
-                      className="w-1.5 h-1.5 bg-white/40 rounded-full"
-                    />
-                    <motion.div
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ repeat: Infinity, duration: 0.6, delay: 0.2 }}
-                      className="w-1.5 h-1.5 bg-white/40 rounded-full"
-                    />
-                    <motion.div
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ repeat: Infinity, duration: 0.6, delay: 0.4 }}
-                      className="w-1.5 h-1.5 bg-white/40 rounded-full"
-                    />
+                    {[0, 0.2, 0.4].map((delay, i) => (
+                      <motion.div
+                        key={i}
+                        animate={{ y: [0, -5, 0] }}
+                        transition={{ repeat: Infinity, duration: 0.6, delay }}
+                        className="w-1.5 h-1.5 bg-white/40 rounded-full"
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
             )}
           </div>
 
+          {/* Input Area */}
           <div className="p-6 border-t border-white/10 bg-black/20 backdrop-blur-2xl">
             <form onSubmit={handleSendMessage} className="relative">
               <input
@@ -470,12 +399,7 @@ export function HeroSection() {
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Napisz wiadomość..."
                 className="w-full backdrop-blur-2xl border border-white/10 rounded-full py-4 pl-6 pr-14 text-sm font-light focus:outline-none focus:ring-1 focus:ring-white/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                style={{
-                  ...CHAT_FONT,
-                  backgroundColor: "rgba(255,255,255,0.06)",
-                  color: "rgba(255,255,255,0.90)",
-                  caretColor: "rgba(255,255,255,0.90)",
-                }}
+                style={{ ...CHAT_FONT, backgroundColor: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.90)", caretColor: "rgba(255,255,255,0.90)" }}
                 disabled={isTyping}
               />
               <button
@@ -489,11 +413,7 @@ export function HeroSection() {
 
             <p
               className="mt-4 text-center tracking-wide leading-relaxed"
-              style={{
-                ...CHAT_FONT,
-                fontSize: "0.625rem",
-                color: "rgba(255,255,255,0.30)",
-              }}
+              style={{ ...CHAT_FONT, fontSize: "0.625rem", color: "rgba(255,255,255,0.30)" }}
             >
               Wersja demonstracyjna. Prosimy nie podawać prawdziwych danych medycznych. Zostawiając
               numer, zgadzasz się na jednorazowy kontakt.
