@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --gold-500: #d4af37;
+  --gold-500: #b8a179;
   --gold-400: #f1d570;
   --gold-600: #aa8c2c;
   --background: oklch(1 0 0);
@@ -208,7 +208,7 @@ body::before {
     145deg,
     transparent 20%,
     #C0C0C0 45%,
-    #D4AF37 65%,
+    #B8A179 65%,
     #F5F0E8 80%,
     transparent 100%
   );
@@ -239,13 +239,13 @@ body::before {
 .cta-text {
   background: linear-gradient(
     110deg,
-    #D4AF37 0%,
+    #B8A179 0%,
     #F5F0E8 20%,
     #ffffff 35%,
     #F5F0E8 50%,
     #C0C0C0 65%,
     #F5F0E8 80%,
-    #D4AF37 100%
+    #B8A179 100%
   );
   background-size: 250% auto;
   -webkit-background-clip: text;
@@ -265,7 +265,7 @@ body::before {
   padding: 28px 24px;
   border-radius: 20px;
   background: linear-gradient(#0a0a0f, #0a0a0f) padding-box,
-              linear-gradient(145deg, transparent 30%, #C0C0C0 60%, #D4AF37 80%) border-box;
+              linear-gradient(145deg, transparent 30%, #C0C0C0 60%, #B8A179 80%) border-box;
   border: 1.5px solid transparent;
   backdrop-filter: blur(18px) saturate(140%);
   -webkit-backdrop-filter: blur(18px) saturate(140%);

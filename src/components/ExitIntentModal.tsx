@@ -56,7 +56,7 @@ export function ExitIntentModal() {
             className="relative w-full max-w-md mx-4 p-8 rounded-2xl bg-zinc-950 border border-white/10 shadow-[0_0_60px_rgba(0,0,0,0.8)] overflow-hidden"
           >
             {/* Gold top reflection */}
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/2 h-[1px] bg-gradient-to-r from-transparent via-[#B8A179]/40 to-transparent" />
 
             <button
               onClick={() => setIsOpen(false)}

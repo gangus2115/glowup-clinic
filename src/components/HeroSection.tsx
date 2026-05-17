@@ -19,24 +19,24 @@ const NotificationCards = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
       text: "Zaplanowano wizytę: Powiększanie ust (14:30)",
       icon: <PulsingIcon duration={2.6}><Calendar className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
       className:
-        "w-full md:w-auto rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
+        "relative w-full ml-0 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3 lg:absolute lg:w-[300px] lg:top-[4%] lg:right-[2%] lg:ml-0",
     },
     {
       text: "Wykryto przeciwwskazanie. Konsultacja w toku...",
       icon: <PulsingIcon duration={3.3}><ShieldAlert className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
       className:
-        "w-full md:w-auto ml-8 md:ml-16 mr-0 md:mr-0 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
+        "relative w-full ml-8 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3 lg:absolute lg:w-[300px] lg:top-[40%] lg:right-[-4%] lg:ml-0",
     },
     {
       text: "Nowy lead: Wycena wdrożenia",
       icon: <PulsingIcon duration={2.9}><Sparkles className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
       className:
-        "w-full md:w-auto md:ml-6 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
+        "relative w-full ml-0 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3 lg:absolute lg:w-[300px] lg:bottom-[4%] lg:right-[6%] lg:ml-0",
     },
   ];
 
   return (
-    <div className="relative flex flex-col gap-3 w-full">
+    <div className="flex flex-col gap-3 w-full lg:relative lg:h-[580px] lg:w-full lg:block">
       {cards.map((card, index) => (
         <motion.div
           key={index}
@@ -248,7 +248,7 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative bg-[#0a0a0f] selection:bg-[#D4AF37]/20 overflow-hidden">
+      <section className="relative bg-[#0a0a0f] selection:bg-[#B8A179]/20 overflow-hidden">
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#e2d9f3" />
 
         {/* Main two-column layout */}
@@ -306,13 +306,13 @@ export function HeroSection() {
                 className="cta-button"
               >
                 <span className="cta-text">Rozpocznij test</span>
-                <ArrowRight className="w-4 h-4" style={{ flexShrink: 0, color: "#D4AF37" }} />
+                <ArrowRight className="w-4 h-4" style={{ flexShrink: 0, color: "#B8A179" }} />
               </button>
             </motion.div>
           </div>
 
           {/* Right column — notification cards in normal flow */}
-          <div className="flex flex-col gap-4 w-full lg:w-auto lg:flex-1 px-6 sm:px-8 lg:px-10 lg:py-28">
+          <div className="flex flex-col gap-4 w-full lg:relative lg:flex-1 lg:min-h-[600px]">
             <NotificationCards onOpenDrawer={() => setIsDrawerOpen(true)} />
           </div>
 
@@ -342,7 +342,7 @@ export function HeroSection() {
               </span>
               <button
                 onClick={() => setIsDrawerOpen(true)}
-                className="flex items-center justify-center bg-[#D4AF37]/80 text-[#0a0a0f] rounded-full p-3 shadow-md active:scale-95 transition-transform"
+                className="flex items-center justify-center bg-[#B8A179]/80 text-[#0a0a0f] rounded-full p-3 shadow-md active:scale-95 transition-transform"
               >
                 <MessageCircle className="w-5 h-5 stroke-[1.5]" />
               </button>
@@ -376,14 +376,14 @@ export function HeroSection() {
             ...CHAT_FONT,
           }}
         >
-          <BorderBeam colorFrom="#D4AF37" colorTo="#C0C0C0" duration={12} size={250} />
+          <BorderBeam colorFrom="#B8A179" colorTo="#C0C0C0" duration={12} size={250} />
 
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-white/10 bg-white/5">
             <div className="flex items-center gap-4">
               <div className="relative">
-                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#1a1406] to-[#2d2410] overflow-hidden flex items-center justify-center shadow-inner border border-[#D4AF37]/20">
-                  <Sparkles className="w-5 h-5 text-[#D4AF37]/60 stroke-[1.5]" />
+                <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-[#1a1406] to-[#2d2410] overflow-hidden flex items-center justify-center shadow-inner border border-[#B8A179]/20">
+                  <Sparkles className="w-5 h-5 text-[#B8A179]/60 stroke-[1.5]" />
                 </div>
                 <div className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-emerald-400 border-2 border-[#0a0a0f] rounded-full"></div>
               </div>
@@ -413,7 +413,7 @@ export function HeroSection() {
               const formattedContent = msg.content
                 .replace(
                   /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-                  '<a href="$2" target="_blank" rel="noopener noreferrer" class="font-medium text-[#D4AF37] border-b border-[#D4AF37]/30 hover:border-[#D4AF37] transition-colors">$1</a>'
+                  '<a href="$2" target="_blank" rel="noopener noreferrer" class="font-medium text-[#B8A179] border-b border-[#B8A179]/30 hover:border-[#B8A179] transition-colors">$1</a>'
                 )
                 .replace(/\n/g, "<br/>");
 
@@ -426,7 +426,7 @@ export function HeroSection() {
                   <div
                     className={`rounded-xl px-4 py-3 min-h-[52px] flex items-center max-w-[85%] ${
                       msg.role === "user"
-                        ? "bg-[#D4AF37]/15 border border-[#D4AF37]/20 text-white/90 rounded-tr-sm"
+                        ? "bg-[#B8A179]/15 border border-[#B8A179]/20 text-white/90 rounded-tr-sm"
                         : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
                     }`}
                     style={{
@@ -489,7 +489,7 @@ export function HeroSection() {
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isTyping}
-                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#D4AF37]/70 rounded-full flex items-center justify-center hover:bg-[#D4AF37]/90 transition-colors shadow-md disabled:bg-white/10 disabled:cursor-not-allowed"
+                className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#B8A179]/70 rounded-full flex items-center justify-center hover:bg-[#B8A179]/90 transition-colors shadow-md disabled:bg-white/10 disabled:cursor-not-allowed"
               >
                 <ArrowRight className="w-4 h-4 text-white -rotate-45 stroke-[1.5]" />
               </button>
