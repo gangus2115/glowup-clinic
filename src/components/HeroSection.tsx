@@ -12,41 +12,53 @@ const CHAT_FONT: React.CSSProperties = {
   fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
 };
 
-// Notification cards — normal document flow, no absolute positioning
 const NotificationCards = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
   const cards = [
     {
       text: "Zaplanowano wizytę: Powiększanie ust (14:30)",
-      icon: <PulsingIcon duration={2.6}><Calendar className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
+      icon: (
+        <PulsingIcon duration={2.6}>
+          <Calendar className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" />
+        </PulsingIcon>
+      ),
       className:
-        "relative w-full ml-0 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3 lg:absolute lg:w-[300px] lg:top-[4%] lg:right-[2%] lg:ml-0",
+        "relative w-full ml-0 lg:w-[320px] lg:ml-0 lg:mt-8 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
     },
     {
       text: "Wykryto przeciwwskazanie. Konsultacja w toku...",
-      icon: <PulsingIcon duration={3.3}><ShieldAlert className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
+      icon: (
+        <PulsingIcon duration={3.3}>
+          <ShieldAlert className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" />
+        </PulsingIcon>
+      ),
       className:
-        "relative w-full ml-8 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3 lg:absolute lg:w-[300px] lg:top-[40%] lg:right-[-4%] lg:ml-0",
+        "relative w-full ml-8 lg:w-[320px] lg:ml-24 lg:mt-6 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
     },
     {
       text: "Nowy lead: Wycena wdrożenia",
-      icon: <PulsingIcon duration={2.9}><Sparkles className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
+      icon: (
+        <PulsingIcon duration={2.9}>
+          <Sparkles className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" />
+        </PulsingIcon>
+      ),
       className:
-        "relative w-full ml-0 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3 lg:absolute lg:w-[300px] lg:bottom-[4%] lg:right-[6%] lg:ml-0",
+        "relative w-full ml-0 lg:w-[320px] lg:ml-6 lg:mt-6 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
     },
   ];
 
   return (
-    <div className="flex flex-col gap-3 w-full lg:relative lg:h-[580px] lg:w-full lg:block">
+    <div className="flex flex-col gap-3 w-full">
       {cards.map((card, index) => (
         <motion.div
           key={index}
           onClick={onOpenDrawer}
-          whileHover={{ scale: 1.015, boxShadow: "0 0 20px rgba(212, 175, 55, 0.10)" }}
+          whileHover={{ scale: 1.015, boxShadow: "0 0 20px rgba(184, 161, 121, 0.10)" }}
           transition={{ duration: 0.4, ease: "circOut" }}
           className={`${card.className} cursor-pointer`}
           style={{
             WebkitBackdropFilter: "blur(12px)",
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.25), 0 4px 24px rgba(0,0,0,0.3)",
+            boxShadow:
+              "inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.25), 0 4px 24px rgba(0,0,0,0.3)",
           }}
         >
           <div className="bg-white/8 p-2 rounded-full border border-white/12 shrink-0">
@@ -75,9 +87,9 @@ export function HeroSection() {
   const [greeting, setGreeting] = useState("");
 
   const [hasRunOnce, setHasRunOnce] = useState(false);
-  const [messages, setMessages] = useState<
-    { id: string; role: "user" | "assistant"; content: string }[]
-  >([]);
+  const [messages, setMessages] = useState
+  { id: string; role: "user" | "assistant"; content: string } []
+    > ([]);
   const [isTyping, setIsTyping] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [conversationId, setConversationId] = useState("");
@@ -270,7 +282,7 @@ export function HeroSection() {
                 </span>
               </div>
 
-              {/* Headline — premium mixed-weight editorial */}
+              {/* Headline */}
               <h1
                 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-10"
                 style={{
@@ -311,8 +323,8 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right column — notification cards in normal flow */}
-          <div className="flex flex-col gap-4 w-full lg:relative lg:flex-1 lg:min-h-[600px]">
+          {/* Right column — notification cards */}
+          <div className="flex flex-col gap-4 w-full lg:flex-1 lg:py-28 lg:pr-16">
             <NotificationCards onOpenDrawer={() => setIsDrawerOpen(true)} />
           </div>
 
@@ -363,7 +375,7 @@ export function HeroSection() {
             }`}
         />
 
-        {/* Drawer Panel — dark glassmorphism */}
+        {/* Drawer Panel */}
         <motion.div
           animate={{ x: isDrawerOpen ? 0 : "100%" }}
           initial={{ x: "100%" }}
@@ -424,11 +436,10 @@ export function HeroSection() {
                     }`}
                 >
                   <div
-                    className={`rounded-xl px-4 py-3 min-h-[52px] flex items-center max-w-[85%] ${
-                      msg.role === "user"
-                        ? "bg-[#B8A179]/15 border border-[#B8A179]/20 text-white/90 rounded-tr-sm"
-                        : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
-                    }`}
+                    className={`rounded-xl px-4 py-3 min-h-[52px] flex items-center max-w-[85%] ${msg.role === "user"
+                      ? "bg-[#B8A179]/15 border border-[#B8A179]/20 text-white/90 rounded-tr-sm"
+                      : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
+                      }`}
                     style={{
                       fontSize: "0.9rem",
                       lineHeight: "1.6",
@@ -444,9 +455,7 @@ export function HeroSection() {
 
             {isTyping && (
               <div className="flex w-full justify-start">
-                <div
-                  className="bg-white/5 border border-white/10 text-white/80 rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%] min-h-[52px] flex items-center"
-                >
+                <div className="bg-white/5 border border-white/10 text-white/80 rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%] min-h-[52px] flex items-center">
                   <div className="flex items-center gap-1.5 px-2">
                     <motion.div
                       animate={{ y: [0, -5, 0] }}
