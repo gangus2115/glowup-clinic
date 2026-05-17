@@ -26,7 +26,7 @@ export function SocialProofSection() {
             <NumberTicker
               value={120}
               delay={0}
-              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#D4AF37] [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
+              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#B8A179] [text-shadow:0_0_20px_rgba(184,161,121,0.3)]"
               style={statFont}
             />
             <span
@@ -55,7 +55,7 @@ export function SocialProofSection() {
             <NumberTicker
               value={0}
               delay={0.15}
-              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#D4AF37] [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
+              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#B8A179] [text-shadow:0_0_20px_rgba(184,161,121,0.3)]"
               style={statFont}
             />
           </div>
@@ -71,7 +71,7 @@ export function SocialProofSection() {
             <NumberTicker
               value={100}
               delay={0.30}
-              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#D4AF37] [text-shadow:0_0_20px_rgba(212,175,55,0.3)]"
+              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#B8A179] [text-shadow:0_0_20px_rgba(184,161,121,0.3)]"
               style={statFont}
             />
             <span

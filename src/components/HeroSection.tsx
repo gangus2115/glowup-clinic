@@ -18,14 +18,20 @@ const NotificationCards = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
     {
       text: "Zaplanowano wizytę: Powiększanie ust (14:30)",
       icon: <PulsingIcon duration={2.6}><Calendar className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
+      className:
+        "w-full md:w-auto rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
     },
     {
       text: "Wykryto przeciwwskazanie. Konsultacja w toku...",
       icon: <PulsingIcon duration={3.3}><ShieldAlert className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
+      className:
+        "w-full md:w-auto ml-8 md:ml-16 mr-0 md:mr-0 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
     },
     {
       text: "Nowy lead: Wycena wdrożenia",
       icon: <PulsingIcon duration={2.9}><Sparkles className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" /></PulsingIcon>,
+      className:
+        "w-full md:w-auto md:ml-6 rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
     },
   ];
 
@@ -37,10 +43,9 @@ const NotificationCards = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
           onClick={onOpenDrawer}
           whileHover={{ scale: 1.015, boxShadow: "0 0 20px rgba(212, 175, 55, 0.10)" }}
           transition={{ duration: 0.4, ease: "circOut" }}
-          className="w-full rounded-xl px-5 py-4 backdrop-blur-md border border-white/10 flex items-center gap-3 cursor-pointer"
+          className={`${card.className} cursor-pointer`}
           style={{
             WebkitBackdropFilter: "blur(12px)",
-            backgroundColor: "rgba(10, 10, 15, 0.65)",
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.25), 0 4px 24px rgba(0,0,0,0.3)",
           }}
         >
