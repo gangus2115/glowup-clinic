@@ -435,6 +435,9 @@ export function HeroSection() {
                 )
                 .replace(/\n/g, "<br/>");
 
+              const isAssistantEmpty = msg.role === 'assistant' && msg.content === '';
+              if (isAssistantEmpty) return null;
+
               return (
                 <div
                   key={msg.id}
@@ -459,7 +462,11 @@ export function HeroSection() {
               );
             })}
 
-            {isTyping && (
+            {(isTyping || (
+              messages.length > 0 &&
+              messages[messages.length - 1].role === 'assistant' &&
+              messages[messages.length - 1].content === ''
+            )) && (
               <div className="flex w-full justify-start">
                 <div className="bg-white/5 border border-white/10 text-white/80 rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%] min-h-[52px] flex items-center">
                   <div className="flex items-center gap-1.5 px-2">
