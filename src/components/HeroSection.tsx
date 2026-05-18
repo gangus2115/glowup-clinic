@@ -426,7 +426,12 @@ export function HeroSection() {
           </div>
 
           {/* Chat Window */}
-          <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4">
+          <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4
+            [&::-webkit-scrollbar]:w-[4px]
+            [&::-webkit-scrollbar-track]:bg-transparent
+            [&::-webkit-scrollbar-thumb]:bg-white/15
+            [&::-webkit-scrollbar-thumb]:rounded-full
+            [&::-webkit-scrollbar-thumb:hover]:bg-white/25">
             {messages.map((msg) => {
               const formattedContent = msg.content
                 .replace(
@@ -441,11 +446,11 @@ export function HeroSection() {
               return (
                 <div
                   key={msg.id}
-                  className={`flex w-full ${msg.role === "user" ? "justify-end" : "justify-start"
+                  className={`flex w-full items-start ${msg.role === "user" ? "justify-end" : "justify-start"
                     }`}
                 >
                   <div
-                    className={`rounded-xl px-4 py-3 min-h-[52px] flex items-center max-w-[85%] ${msg.role === "user"
+                    className={`rounded-xl px-4 py-3 flex items-start max-w-[85%] ${msg.role === "user"
                         ? "bg-[#B8A179]/15 border border-[#B8A179]/20 text-white/90 rounded-tr-sm"
                         : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
                       }`}
@@ -468,7 +473,7 @@ export function HeroSection() {
               messages[messages.length - 1].content === ''
             )) && (
               <div className="flex w-full justify-start">
-                <div className="bg-white/5 border border-white/10 text-white/80 rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%] min-h-[52px] flex items-center">
+                <div className="bg-white/5 border border-white/10 text-white/80 rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%] flex items-start">
                   <div className="flex items-center gap-1.5 px-2">
                     <motion.div
                       animate={{ y: [0, -5, 0] }}
