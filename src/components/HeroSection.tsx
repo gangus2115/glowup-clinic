@@ -446,11 +446,11 @@ export function HeroSection() {
               return (
                 <div
                   key={msg.id}
-                  className={`flex w-full items-start ${msg.role === "user" ? "justify-end" : "justify-start"
+                  className={`flex w-full ${msg.role === "user" ? "justify-end" : "justify-start"
                     }`}
                 >
                   <div
-                    className={`rounded-xl px-4 py-3 flex items-start max-w-[85%] ${msg.role === "user"
+                    className={`rounded-xl px-4 py-3 max-w-[85%] h-fit self-start ${msg.role === "user"
                         ? "bg-[#B8A179]/15 border border-[#B8A179]/20 text-white/90 rounded-tr-sm"
                         : "bg-white/5 border border-white/10 text-white/80 rounded-tl-sm"
                       }`}
@@ -473,7 +473,7 @@ export function HeroSection() {
               messages[messages.length - 1].content === ''
             )) && (
               <div className="flex w-full justify-start">
-                <div className="bg-white/5 border border-white/10 text-white/80 rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%] flex items-start">
+                <div className="bg-white/5 border border-white/10 text-white/80 rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%] min-h-[52px] flex items-center">
                   <div className="flex items-center gap-1.5 px-2">
                     <motion.div
                       animate={{ y: [0, -5, 0] }}
