@@ -7,85 +7,13 @@ import { ArrowRight, X, Calendar, ShieldAlert, Sparkles, MessageCircle } from "l
 import { Spotlight } from "@/components/ui/spotlight";
 import { BorderBeam } from "@/components/ui/border-beam";
 import PulsingIcon from "@/components/PulsingIcon";
+import HeroGlassVisual from "@/components/HeroGlassVisual";
 
 const CHAT_FONT: React.CSSProperties = {
   fontFamily: "'Inter', 'Roboto', ui-sans-serif, system-ui, sans-serif",
 };
 
-const NotificationCards = ({ onOpenDrawer }: { onOpenDrawer: () => void }) => {
-  const cards = [
-    {
-      text: "Zaplanowano wizytę: Powiększanie ust (14:30)",
-      icon: (
-        <PulsingIcon duration={2.6}>
-          <Calendar className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" />
-        </PulsingIcon>
-      ),
-      className:
-        "relative w-full ml-0 " +
-        "lg:absolute lg:w-[300px] lg:top-[8%] lg:left-[0%] lg:ml-0 " +
-        "rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
-    },
-    {
-      text: "Wykryto przeciwwskazanie. Konsultacja w toku...",
-      icon: (
-        <PulsingIcon duration={3.3}>
-          <ShieldAlert className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" />
-        </PulsingIcon>
-      ),
-      className:
-        "relative w-full ml-8 " +
-        "lg:absolute lg:w-[320px] lg:top-[46%] lg:right-[-2%] lg:ml-0 " +
-        "rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
-    },
-    {
-      text: "Nowy lead: Wycena wdrożenia",
-      icon: (
-        <PulsingIcon duration={2.9}>
-          <Sparkles className="w-4 h-4 text-[#C0C0C0] stroke-[1.5]" />
-        </PulsingIcon>
-      ),
-      className:
-        "relative w-full ml-0 " +
-        "lg:absolute lg:w-[280px] lg:bottom-[10%] lg:left-[18%] lg:ml-0 " +
-        "rounded-xl px-5 py-4 bg-black/50 backdrop-blur-md border border-white/10 flex items-center gap-3",
-    },
-  ];
 
-  return (
-    <div className="flex flex-col gap-3 w-full lg:block lg:relative lg:h-[520px] lg:w-full">
-      {cards.map((card, index) => (
-        <motion.div
-          key={index}
-          onClick={onOpenDrawer}
-          whileHover={{ scale: 1.015, boxShadow: "0 0 20px rgba(184, 161, 121, 0.10)" }}
-          transition={{ duration: 0.4, ease: "circOut" }}
-          className={`${card.className} cursor-pointer`}
-          style={{
-            WebkitBackdropFilter: "blur(12px)",
-            boxShadow:
-              "inset 0 1px 0 rgba(255,255,255,0.07), inset 0 -1px 0 rgba(0,0,0,0.25), 0 4px 24px rgba(0,0,0,0.3)",
-          }}
-        >
-          <div className="bg-white/8 p-2 rounded-full border border-white/12 shrink-0">
-            {card.icon}
-          </div>
-          <span
-            style={{
-              ...CHAT_FONT,
-              fontSize: "0.82rem",
-              fontWeight: 500,
-              color: "rgba(255,255,255,0.80)",
-              lineHeight: 1.4,
-            }}
-          >
-            {card.text}
-          </span>
-        </motion.div>
-      ))}
-    </div>
-  );
-};
 
 export function HeroSection() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -329,9 +257,9 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          {/* Right column — lg:relative gives absolute children a coordinate system */}
-          <div className="flex flex-col gap-4 w-full lg:flex-1 lg:relative lg:min-h-[520px] lg:py-28 lg:pr-16">
-            <NotificationCards onOpenDrawer={() => setIsDrawerOpen(true)} />
+          {/* Right column */}
+          <div className="flex flex-col gap-4 w-full lg:flex-1 lg:relative lg:min-h-[520px] lg:py-28 lg:pr-16 aspect-square lg:aspect-auto">
+            <HeroGlassVisual />
           </div>
 
         </div>
