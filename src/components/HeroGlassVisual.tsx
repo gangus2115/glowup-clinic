@@ -1,16 +1,46 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionValue, useSpring, useTransform, animate } from "framer-motion";
+
+const positions = [
+  // Stan A (domyślny)
+  {
+    card1: { x: -48, y: -56, rotate: -6, zIndex: 10, scale: 0.92 },
+    card2: { x: 0,   y: 0,   rotate: 2,  zIndex: 20, scale: 1.00 },
+    card3: { x: 64,  y: 64,  rotate: 4,  zIndex: 30, scale: 0.96 },
+  },
+  // Stan B
+  {
+    card1: { x: 64,  y: 64,  rotate: 4,  zIndex: 30, scale: 0.96 },
+    card2: { x: -48, y: -56, rotate: -6, zIndex: 10, scale: 0.92 },
+    card3: { x: 0,   y: 0,   rotate: 2,  zIndex: 20, scale: 1.00 },
+  },
+  // Stan C
+  {
+    card1: { x: 0,   y: 0,   rotate: 2,  zIndex: 20, scale: 1.00 },
+    card2: { x: 64,  y: 64,  rotate: 4,  zIndex: 30, scale: 0.96 },
+    card3: { x: -48, y: -56, rotate: -6, zIndex: 10, scale: 0.92 },
+  }
+];
 
 export default function HeroGlassVisual() {
   const [isMobile, setIsMobile] = useState(false);
+  const [activeState, setActiveState] = useState(0);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Cykliczna zmiana stanu co 6 sekund (6000ms)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveState((prev) => (prev + 1) % 3);
+    }, 6000);
+    return () => clearInterval(interval);
   }, []);
 
   const mouseX = useMotionValue(0);
@@ -21,23 +51,93 @@ export default function HeroGlassVisual() {
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
+  const isMobileMV = useMotionValue(isMobile ? 1 : 0);
+  useEffect(() => {
+    isMobileMV.set(isMobile ? 1 : 0);
+  }, [isMobile]);
+
+  // Bazowe wartości przesunięcia jako MotionValues
+  const card1BaseX = useMotionValue(positions[0].card1.x);
+  const card1BaseY = useMotionValue(positions[0].card1.y);
+
+  const card2BaseX = useMotionValue(positions[0].card2.x);
+  const card2BaseY = useMotionValue(positions[0].card2.y);
+
+  const card3BaseX = useMotionValue(positions[0].card3.x);
+  const card3BaseY = useMotionValue(positions[0].card3.y);
+
+  // Animowanie bazowych wartości x i y przy zmianie stanu
+  useEffect(() => {
+    const state = positions[activeState];
+    animate(card1BaseX, state.card1.x, { duration: 2.4, ease: "easeInOut" });
+    animate(card1BaseY, state.card1.y, { duration: 2.4, ease: "easeInOut" });
+
+    animate(card2BaseX, state.card2.x, { duration: 2.4, ease: "easeInOut" });
+    animate(card2BaseY, state.card2.y, { duration: 2.4, ease: "easeInOut" });
+
+    animate(card3BaseX, state.card3.x, { duration: 2.4, ease: "easeInOut" });
+    animate(card3BaseY, state.card3.y, { duration: 2.4, ease: "easeInOut" });
+  }, [activeState]);
+
   // Warstwa 1 (najwolniejsza, -0.3 współczynnik):
   const card1RotateX = useTransform(smoothY, [-300, 300], [4, -4]);
   const card1RotateY = useTransform(smoothX, [-300, 300], [-6, 6]);
-  const card1X = useTransform(smoothX, [-300, 300], [-6, 6]);
-  const card1Y = useTransform(smoothY, [-300, 300], [-4, 4]);
+  const card1X = useTransform([card1BaseX, smoothX, isMobileMV], (values) => {
+    const baseX = values[0] as number;
+    const mouseXVal = values[1] as number;
+    const mob = values[2] as number;
+    if (mob === 1) return baseX;
+    const mouseOffset = (mouseXVal / 300) * 6;
+    return baseX + mouseOffset;
+  });
+  const card1Y = useTransform([card1BaseY, smoothY, isMobileMV], (values) => {
+    const baseY = values[0] as number;
+    const mouseYVal = values[1] as number;
+    const mob = values[2] as number;
+    if (mob === 1) return baseY;
+    const mouseOffset = (mouseYVal / 300) * 4;
+    return baseY + mouseOffset;
+  });
 
   // Warstwa 2 (pośrednia, 0.5 współczynnik):
   const card2RotateX = useTransform(smoothY, [-300, 300], [7, -7]);
   const card2RotateY = useTransform(smoothX, [-300, 300], [-9, 9]);
-  const card2X = useTransform(smoothX, [-300, 300], [-10, 10]);
-  const card2Y = useTransform(smoothY, [-300, 300], [-7, 7]);
+  const card2X = useTransform([card2BaseX, smoothX, isMobileMV], (values) => {
+    const baseX = values[0] as number;
+    const mouseXVal = values[1] as number;
+    const mob = values[2] as number;
+    if (mob === 1) return baseX;
+    const mouseOffset = (mouseXVal / 300) * 10;
+    return baseX + mouseOffset;
+  });
+  const card2Y = useTransform([card2BaseY, smoothY, isMobileMV], (values) => {
+    const baseY = values[0] as number;
+    const mouseYVal = values[1] as number;
+    const mob = values[2] as number;
+    if (mob === 1) return baseY;
+    const mouseOffset = (mouseYVal / 300) * 7;
+    return baseY + mouseOffset;
+  });
 
   // Warstwa 3 (najszybsza, 0.8 współczynnik):
   const card3RotateX = useTransform(smoothY, [-300, 300], [11, -11]);
   const card3RotateY = useTransform(smoothX, [-300, 300], [-14, 14]);
-  const card3X = useTransform(smoothX, [-300, 300], [-16, 16]);
-  const card3Y = useTransform(smoothY, [-300, 300], [-11, 11]);
+  const card3X = useTransform([card3BaseX, smoothX, isMobileMV], (values) => {
+    const baseX = values[0] as number;
+    const mouseXVal = values[1] as number;
+    const mob = values[2] as number;
+    if (mob === 1) return baseX;
+    const mouseOffset = (mouseXVal / 300) * 16;
+    return baseX + mouseOffset;
+  });
+  const card3Y = useTransform([card3BaseY, smoothY, isMobileMV], (values) => {
+    const baseY = values[0] as number;
+    const mouseYVal = values[1] as number;
+    const mob = values[2] as number;
+    if (mob === 1) return baseY;
+    const mouseOffset = (mouseYVal / 300) * 11;
+    return baseY + mouseOffset;
+  });
 
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -101,10 +201,21 @@ export default function HeroGlassVisual() {
         
         {/* KARTA 1: Back layer */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: "easeOut" }}
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            rotate: positions[activeState].card1.rotate,
+            scale: positions[activeState].card1.scale,
+            zIndex: positions[activeState].card1.zIndex,
+          }}
+          transition={{
+            opacity: { duration: 0.8, delay: 0.1, ease: "easeOut" },
+            default: { duration: 2.4, ease: "easeInOut" },
+          }}
           style={isMobile ? {
+            x: card1X,
+            y: card1Y,
+            zIndex: positions[activeState].card1.zIndex,
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)"
           } : {
             x: card1X,
@@ -112,9 +223,10 @@ export default function HeroGlassVisual() {
             rotateX: card1RotateX,
             rotateY: card1RotateY,
             transformPerspective: 800,
+            zIndex: positions[activeState].card1.zIndex,
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)"
           }}
-          className="absolute -translate-x-12 -translate-y-14 -rotate-6 w-60 h-20 rounded-3xl backdrop-blur-md bg-white/[0.04] border border-white/[0.07] z-10 flex items-center justify-center"
+          className="absolute w-60 h-20 rounded-3xl backdrop-blur-md bg-white/[0.04] border border-white/[0.07] flex items-center justify-center"
         >
           <div className="flex items-center gap-2.5">
             <span style={{ color: "#B8A179", fontSize: "0.7rem" }}>✦</span>
@@ -126,10 +238,21 @@ export default function HeroGlassVisual() {
 
         {/* KARTA 2: Middle layer */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            rotate: positions[activeState].card2.rotate,
+            scale: positions[activeState].card2.scale,
+            zIndex: positions[activeState].card2.zIndex,
+          }}
+          transition={{
+            opacity: { duration: 0.8, delay: 0.25, ease: "easeOut" },
+            default: { duration: 2.4, ease: "easeInOut" },
+          }}
           style={isMobile ? {
+            x: card2X,
+            y: card2Y,
+            zIndex: positions[activeState].card2.zIndex,
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 8px 32px rgba(0,0,0,0.45), 0 0 60px rgba(184,161,121,0.18)"
           } : {
             x: card2X,
@@ -137,9 +260,10 @@ export default function HeroGlassVisual() {
             rotateX: card2RotateX,
             rotateY: card2RotateY,
             transformPerspective: 800,
+            zIndex: positions[activeState].card2.zIndex,
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 8px 32px rgba(0,0,0,0.45), 0 0 60px rgba(184,161,121,0.18)"
           }}
-          className="absolute rotate-2 w-72 h-24 rounded-3xl backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] z-20 flex items-center justify-center"
+          className="absolute w-72 h-24 rounded-3xl backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] flex items-center justify-center"
         >
           <div className="flex items-center gap-2.5">
             <span style={{ color: "#B8A179", fontSize: "0.75rem" }}>→</span>
@@ -151,10 +275,21 @@ export default function HeroGlassVisual() {
 
         {/* KARTA 3: Front layer (Gold frame, no background) */}
         <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: 1,
+            rotate: positions[activeState].card3.rotate,
+            scale: positions[activeState].card3.scale,
+            zIndex: positions[activeState].card3.zIndex,
+          }}
+          transition={{
+            opacity: { duration: 0.8, delay: 0.45, ease: "easeOut" },
+            default: { duration: 2.4, ease: "easeInOut" },
+          }}
           style={isMobile ? {
+            x: card3X,
+            y: card3Y,
+            zIndex: positions[activeState].card3.zIndex,
             boxShadow: "0 0 30px rgba(184,161,121,0.20), 0 0 8px rgba(184,161,121,0.12), inset 0 0 24px rgba(184,161,121,0.06)"
           } : {
             x: card3X,
@@ -162,9 +297,10 @@ export default function HeroGlassVisual() {
             rotateX: card3RotateX,
             rotateY: card3RotateY,
             transformPerspective: 800,
+            zIndex: positions[activeState].card3.zIndex,
             boxShadow: "0 0 30px rgba(184,161,121,0.20), 0 0 8px rgba(184,161,121,0.12), inset 0 0 24px rgba(184,161,121,0.06)"
           }}
-          className="absolute translate-x-16 translate-y-16 rotate-4 w-52 h-28 rounded-3xl border border-[#B8A179]/90 z-30"
+          className="absolute w-52 h-28 rounded-3xl border border-[#B8A179]/90"
         />
 
       </div>
