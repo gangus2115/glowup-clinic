@@ -194,7 +194,7 @@ export function HeroSection() {
 
   return (
     <>
-      <section className="relative bg-[#0a0a0f] selection:bg-[#B8A179]/20 overflow-hidden">
+      <section className="relative bg-[#0a0a0f] selection:bg-[#B8A179]/20 overflow-x-clip overflow-y-visible">
         <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#e2d9f3" />
 
         {/* Main two-column layout */}

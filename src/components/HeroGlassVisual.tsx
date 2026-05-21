@@ -168,11 +168,7 @@ export default function HeroGlassVisual() {
           ease: "easeInOut",
           repeat: Infinity,
         }}
-        style={{
-          maskImage: "radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%)",
-          WebkitMaskImage: "radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%)"
-        }}
-        className="absolute inset-0 flex items-center justify-center opacity-80 will-change-transform"
+        className="absolute -inset-x-0 -inset-y-24 md:-inset-y-32 flex items-center justify-center opacity-80 will-change-transform"
       >
         {/* Okrąg 1 (większy, centralny) */}
         <div
