@@ -225,8 +225,8 @@ export default function HeroGlassVisual() {
           className="absolute w-60 h-20 rounded-3xl backdrop-blur-md bg-white/[0.04] border border-white/[0.07] flex items-center justify-center will-change-transform"
         >
           <div className="flex items-center gap-2.5">
-            <span style={{ color: "#B8A179", fontSize: "0.7rem" }}>✦</span>
-            <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", fontWeight: 300, letterSpacing: "0.02em", fontFamily: "var(--font-sans), 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif" }}>
+            <span style={{ color: "#B8A179", fontSize: "0.65rem", letterSpacing: "0" }}>✦</span>
+            <span style={{ color: "rgba(255,255,255,0.80)", fontSize: "0.78rem", fontWeight: 300, letterSpacing: "0.06em", fontFamily: "var(--font-sans)" }}>
               4.97 / 5.0 · Średnia ocen
             </span>
           </div>
@@ -262,8 +262,8 @@ export default function HeroGlassVisual() {
           className="absolute w-72 h-24 rounded-3xl backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] flex items-center justify-center will-change-transform"
         >
           <div className="flex items-center gap-2.5">
-            <span style={{ color: "#B8A179", fontSize: "0.75rem" }}>→</span>
-            <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.85rem", fontWeight: 300, letterSpacing: "0.01em", fontFamily: "var(--font-sans), 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif" }}>
+            <span style={{ color: "#B8A179", fontSize: "0.65rem", letterSpacing: "0" }}>→</span>
+            <span style={{ color: "rgba(255,255,255,0.80)", fontSize: "0.78rem", fontWeight: 300, letterSpacing: "0.06em", fontFamily: "var(--font-sans)" }}>
               847 zadowolonych Pacjentek
             </span>
           </div>
@@ -299,8 +299,8 @@ export default function HeroGlassVisual() {
           className="absolute w-60 h-20 rounded-3xl backdrop-blur-md bg-white/[0.06] border border-[#B8A179]/90 flex items-center justify-center will-change-transform"
         >
           <div className="flex items-center gap-2.5">
-            <span style={{ color: "#B8A179", fontSize: "0.7rem" }}>✦</span>
-            <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", fontWeight: 300, letterSpacing: "0.02em", fontFamily: "var(--font-sans), 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif" }}>
+            <span style={{ color: "#B8A179", fontSize: "0.65rem", letterSpacing: "0" }}>✦</span>
+            <span style={{ color: "rgba(255,255,255,0.80)", fontSize: "0.78rem", fontWeight: 300, letterSpacing: "0.06em", fontFamily: "var(--font-sans)" }}>
               Certyfikowana klinika premium
             </span>
           </div>
