@@ -58,7 +58,7 @@ export default function HeroGlassVisual() {
         mouseX.set(0);
         mouseY.set(0);
       }}
-      className="relative w-full h-full min-h-[400px] lg:min-h-[600px] flex items-center justify-center overflow-hidden rounded-2xl pointer-events-none"
+      className="relative w-full h-full min-h-[400px] lg:min-h-[600px] flex items-center justify-center overflow-hidden rounded-2xl pointer-events-auto select-none"
     >
       {/* Background layer */}
       <motion.div
@@ -109,7 +109,7 @@ export default function HeroGlassVisual() {
         >
           <div className="flex items-center gap-2.5">
             <span style={{ color: "#B8A179", fontSize: "0.7rem" }}>✦</span>
-            <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", fontWeight: 300, letterSpacing: "0.02em" }}>
+            <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", fontWeight: 300, letterSpacing: "0.02em", fontFamily: "var(--font-sans), 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif" }}>
               4.97 / 5.0 · Średnia ocen
             </span>
           </div>
@@ -134,7 +134,7 @@ export default function HeroGlassVisual() {
         >
           <div className="flex items-center gap-2.5">
             <span style={{ color: "#B8A179", fontSize: "0.75rem" }}>→</span>
-            <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.85rem", fontWeight: 300, letterSpacing: "0.01em" }}>
+            <span style={{ color: "rgba(255,255,255,0.85)", fontSize: "0.85rem", fontWeight: 300, letterSpacing: "0.01em", fontFamily: "var(--font-sans), 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif" }}>
               847 zadowolonych Pacjentek
             </span>
           </div>
