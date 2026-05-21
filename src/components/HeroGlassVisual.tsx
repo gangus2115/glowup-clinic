@@ -58,7 +58,7 @@ export default function HeroGlassVisual() {
         mouseX.set(0);
         mouseY.set(0);
       }}
-      className="relative w-full h-full min-h-[400px] lg:min-h-[600px] flex items-center justify-center overflow-hidden rounded-2xl pointer-events-auto select-none"
+      className="relative w-full h-full min-h-[400px] lg:min-h-[600px] flex items-center justify-center overflow-visible rounded-2xl pointer-events-auto select-none"
     >
       {/* Background layer */}
       <motion.div
@@ -67,6 +67,10 @@ export default function HeroGlassVisual() {
           duration: 8,
           ease: "easeInOut",
           repeat: Infinity,
+        }}
+        style={{
+          maskImage: "radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%)"
         }}
         className="absolute inset-0 flex items-center justify-center opacity-80"
       >
