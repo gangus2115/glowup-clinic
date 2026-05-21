@@ -286,7 +286,7 @@ export default function HeroGlassVisual() {
             x: card3X,
             y: card3Y,
             zIndex: positions[activeState].card3.zIndex,
-            boxShadow: "0 0 30px rgba(184,161,121,0.20), 0 0 8px rgba(184,161,121,0.12), inset 0 0 24px rgba(184,161,121,0.06)"
+            boxShadow: "0 0 30px rgba(184,161,121,0.20), 0 0 8px rgba(184,161,121,0.12), inset 0 0 24px rgba(184,161,121,0.06), 0 8px 32px rgba(0,0,0,0.35)"
           } : {
             x: card3X,
             y: card3Y,
@@ -294,10 +294,17 @@ export default function HeroGlassVisual() {
             rotateY: card3RotateY,
             transformPerspective: 800,
             zIndex: positions[activeState].card3.zIndex,
-            boxShadow: "0 0 30px rgba(184,161,121,0.20), 0 0 8px rgba(184,161,121,0.12), inset 0 0 24px rgba(184,161,121,0.06)"
+            boxShadow: "0 0 30px rgba(184,161,121,0.20), 0 0 8px rgba(184,161,121,0.12), inset 0 0 24px rgba(184,161,121,0.06), 0 8px 32px rgba(0,0,0,0.35)"
           }}
-          className="absolute w-52 h-28 rounded-3xl border border-[#B8A179]/90 will-change-transform"
-        />
+          className="absolute w-60 h-20 rounded-3xl backdrop-blur-md bg-white/[0.06] border border-[#B8A179]/90 flex items-center justify-center will-change-transform"
+        >
+          <div className="flex items-center gap-2.5">
+            <span style={{ color: "#B8A179", fontSize: "0.7rem" }}>✦</span>
+            <span style={{ color: "rgba(255,255,255,0.75)", fontSize: "0.8rem", fontWeight: 300, letterSpacing: "0.02em", fontFamily: "var(--font-sans), 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif" }}>
+              Certyfikowana klinika premium
+            </span>
+          </div>
+        </motion.div>
 
       </div>
     </div>
