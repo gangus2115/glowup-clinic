@@ -172,7 +172,7 @@ export default function HeroGlassVisual() {
           maskImage: "radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%)",
           WebkitMaskImage: "radial-gradient(ellipse 85% 85% at 50% 50%, black 30%, transparent 100%)"
         }}
-        className="absolute inset-0 flex items-center justify-center opacity-80"
+        className="absolute inset-0 flex items-center justify-center opacity-80 will-change-transform"
       >
         {/* Okrąg 1 (większy, centralny) */}
         <div
@@ -226,7 +226,7 @@ export default function HeroGlassVisual() {
             zIndex: positions[activeState].card1.zIndex,
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.05)"
           }}
-          className="absolute w-60 h-20 rounded-3xl backdrop-blur-md bg-white/[0.04] border border-white/[0.07] flex items-center justify-center"
+          className="absolute w-60 h-20 rounded-3xl backdrop-blur-md bg-white/[0.04] border border-white/[0.07] flex items-center justify-center will-change-transform"
         >
           <div className="flex items-center gap-2.5">
             <span style={{ color: "#B8A179", fontSize: "0.7rem" }}>✦</span>
@@ -263,7 +263,7 @@ export default function HeroGlassVisual() {
             zIndex: positions[activeState].card2.zIndex,
             boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 8px 32px rgba(0,0,0,0.45), 0 0 60px rgba(184,161,121,0.18)"
           }}
-          className="absolute w-72 h-24 rounded-3xl backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] flex items-center justify-center"
+          className="absolute w-72 h-24 rounded-3xl backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] flex items-center justify-center will-change-transform"
         >
           <div className="flex items-center gap-2.5">
             <span style={{ color: "#B8A179", fontSize: "0.75rem" }}>→</span>
@@ -300,7 +300,7 @@ export default function HeroGlassVisual() {
             zIndex: positions[activeState].card3.zIndex,
             boxShadow: "0 0 30px rgba(184,161,121,0.20), 0 0 8px rgba(184,161,121,0.12), inset 0 0 24px rgba(184,161,121,0.06)"
           }}
-          className="absolute w-52 h-28 rounded-3xl border border-[#B8A179]/90"
+          className="absolute w-52 h-28 rounded-3xl border border-[#B8A179]/90 will-change-transform"
         />
 
       </div>

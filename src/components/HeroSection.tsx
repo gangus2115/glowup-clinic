@@ -201,7 +201,7 @@ export function HeroSection() {
         <div className="flex flex-col lg:flex-row items-start gap-10 lg:gap-16 w-full">
 
           {/* Left Content Area */}
-          <div className="relative z-10 w-full lg:w-[50%] flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-24 lg:py-28 border-b lg:border-b-0 lg:border-r border-white/5">
+          <div className="relative z-40 w-full lg:w-[50%] flex flex-col justify-center px-8 sm:px-16 lg:px-24 py-24 lg:py-28 border-b lg:border-b-0 lg:border-r border-white/5">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
