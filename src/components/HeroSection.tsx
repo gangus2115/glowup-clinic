@@ -217,26 +217,34 @@ export function HeroSection() {
               </div>
 
               {/* Headline */}
-              <h1
-                className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-10"
-                style={{
-                  fontFamily: "'Inter', 'Geist', ui-sans-serif, system-ui, sans-serif",
-                  letterSpacing: "-0.04em",
-                  lineHeight: 1.05,
-                }}
-              >
-                <span style={{ fontWeight: 800, color: "rgba(255,255,255,0.95)" }}>
-                  GlowUp.
-                </span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl mb-10" style={{ fontFamily: "'Inter', 'Geist', ui-sans-serif, system-ui, sans-serif", letterSpacing: "-0.04em", lineHeight: 1.05 }}>
+                {/* GlowUp. */}
+                <span style={{ fontWeight: 800, color: "rgba(255,255,255,0.95)" }}>GlowUp.</span>
+
+                {/* Łamanie linii po "GlowUp." (zawsze) */}
                 <br />
-                <span
-                  style={{
-                    fontWeight: 300,
-                    color: "rgba(255,255,255,0.72)",
-                    letterSpacing: "-0.03em",
-                  }}
-                >
-                  Nowy Wymiar Obsługi.
+
+                <span style={{ fontWeight: 300, color: "rgba(255,255,255,0.72)", letterSpacing: "-0.03em" }}>
+                  {/* Słowo "Nowy" */}
+                  Nowy
+                  
+                  {/* Łamanie linii po "Nowy" - TYLKO MOBILE */}
+                  <span className="block md:hidden"></span>
+                  
+                  {/* Spacja przed "Wymiar" - TYLKO DESKTOP */}
+                  <span className="hidden md:inline"> </span>
+                  
+                  {/* Słowo "Wymiar" */}
+                  Wymiar
+                  
+                  {/* Łamanie linii po "Wymiar" - TYLKO MOBILE */}
+                  <span className="block md:hidden"></span>
+                  
+                  {/* Spacja przed "Obsługi." - TYLKO DESKTOP */}
+                  <span className="hidden md:inline"> </span>
+                  
+                  {/* Słowo "Obsługi." */}
+                  Obsługi.
                 </span>
               </h1>
 
