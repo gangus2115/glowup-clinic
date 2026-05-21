@@ -68,22 +68,27 @@ export default function HeroGlassVisual() {
           ease: "easeInOut",
           repeat: Infinity,
         }}
-        className="absolute inset-0 flex items-center justify-center opacity-50"
+        className="absolute inset-0 flex items-center justify-center opacity-80"
       >
         {/* Okrąg 1 (większy, centralny) */}
         <div
           className="absolute w-[350px] h-[350px] md:w-[560px] md:h-[560px] rounded-full blur-[100px] md:blur-[140px]"
-          style={{ background: "radial-gradient(circle, #1C1A14 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(72, 58, 22, 0.75) 0%, transparent 70%)" }}
         />
         {/* Okrąg 2 (mniejszy, przesunięty w górę-prawo) */}
         <div
           className="absolute w-[220px] h-[220px] md:w-[380px] md:h-[380px] rounded-full blur-[80px] md:blur-[110px] translate-x-1/3 -translate-y-1/3"
-          style={{ background: "radial-gradient(circle, #2C2410 0%, transparent 70%)" }}
+          style={{ background: "radial-gradient(circle, rgba(55, 42, 14, 0.65) 0%, transparent 70%)" }}
         />
         {/* Okrąg 3 (akcentowy złoty, subtelny) */}
         <div
           className="absolute w-[150px] h-[150px] md:w-[260px] md:h-[260px] rounded-full blur-[60px] md:blur-[90px] -translate-x-1/2 translate-y-1/3 opacity-60"
-          style={{ background: "radial-gradient(circle, #B8A17920 0%, transparent 60%)" }}
+          style={{ background: "radial-gradient(circle, rgba(184, 161, 121, 0.22) 0%, transparent 60%)" }}
+        />
+        {/* Okrąg 4 (strefa kontrastu) */}
+        <div
+          className="absolute w-[400px] h-[200px] md:w-[600px] md:h-[280px] rounded-full blur-[120px] md:blur-[160px] translate-y-1/4 opacity-30"
+          style={{ background: "radial-gradient(ellipse, rgba(255, 245, 210, 0.08) 0%, transparent 70%)" }}
         />
       </motion.div>
 
@@ -121,14 +126,14 @@ export default function HeroGlassVisual() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
           style={isMobile ? {
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), 0 8px 32px rgba(0,0,0,0.4), 0 0 40px rgba(184,161,121,0.10)"
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 8px 32px rgba(0,0,0,0.45), 0 0 60px rgba(184,161,121,0.18)"
           } : {
             x: card2X,
             y: card2Y,
             rotateX: card2RotateX,
             rotateY: card2RotateY,
             transformPerspective: 800,
-            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.10), 0 8px 32px rgba(0,0,0,0.4), 0 0 40px rgba(184,161,121,0.10)"
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.14), 0 8px 32px rgba(0,0,0,0.45), 0 0 60px rgba(184,161,121,0.18)"
           }}
           className="absolute rotate-2 w-72 h-24 rounded-3xl backdrop-blur-xl bg-white/[0.08] border border-white/[0.12] z-20 flex items-center justify-center"
         >
@@ -146,16 +151,16 @@ export default function HeroGlassVisual() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
           style={isMobile ? {
-            boxShadow: "0 0 20px rgba(184,161,121,0.12), inset 0 0 20px rgba(184,161,121,0.04)"
+            boxShadow: "0 0 30px rgba(184,161,121,0.20), 0 0 8px rgba(184,161,121,0.12), inset 0 0 24px rgba(184,161,121,0.06)"
           } : {
             x: card3X,
             y: card3Y,
             rotateX: card3RotateX,
             rotateY: card3RotateY,
             transformPerspective: 800,
-            boxShadow: "0 0 20px rgba(184,161,121,0.12), inset 0 0 20px rgba(184,161,121,0.04)"
+            boxShadow: "0 0 30px rgba(184,161,121,0.20), 0 0 8px rgba(184,161,121,0.12), inset 0 0 24px rgba(184,161,121,0.06)"
           }}
-          className="absolute translate-x-16 translate-y-16 rotate-4 w-52 h-28 rounded-3xl border border-[#B8A179]/70 z-30"
+          className="absolute translate-x-16 translate-y-16 rotate-4 w-52 h-28 rounded-3xl border border-[#B8A179]/90 z-30"
         />
 
       </div>
