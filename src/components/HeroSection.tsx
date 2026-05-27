@@ -369,14 +369,15 @@ export function HeroSection() {
             [&::-webkit-scrollbar-thumb]:rounded-full
             [&::-webkit-scrollbar-thumb:hover]:bg-white/25">
             {messages.map((msg) => {
-              const formattedContent = msg.content
+              const cleanContent = msg.content.trimStart();
+              const formattedContent = cleanContent
                 .replace(
                   /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
                   '<a href="$2" target="_blank" rel="noopener noreferrer" class="font-medium text-[#B8A179] border-b border-[#B8A179]/30 hover:border-[#B8A179] transition-colors">$1</a>'
                 )
                 .replace(/\n/g, "<br/>");
 
-              const isAssistantEmpty = msg.role === 'assistant' && msg.content === '';
+              const isAssistantEmpty = msg.role === 'assistant' && msg.content.trim() === '';
               if (isAssistantEmpty) return null;
 
               return (
