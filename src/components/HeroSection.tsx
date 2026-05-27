@@ -369,22 +369,25 @@ export function HeroSection() {
             [&::-webkit-scrollbar-thumb]:rounded-full
             [&::-webkit-scrollbar-thumb:hover]:bg-white/25">
             {messages.map((msg) => {
-              // 1. Agresywne czyszczenie wiodących pustych znaków i enterów z surowego tekstu
-              let cleanContent = msg.content.replace(/^[\s\n\r]+/, '');
+              // 1. Agresywne wycięcie komentarza HTML (zamkniętego lub niedokończonego w strumieniu)
+              let visibleContent = msg.content.replace(/<!--[\s\S]*?(?:-->|$)/g, '');
 
-              // 2. Formatowanie linków i zamiana nowej linii na <br/>
-              let formattedContent = cleanContent
+              // 2. Usunięcie wiodących spacji i enterów z przodu tekstu
+              visibleContent = visibleContent.replace(/^[\s\n\r]+/, '');
+
+              const isAssistantEmpty = msg.role === 'assistant' && visibleContent.trim() === '';
+              if (isAssistantEmpty) return null;
+
+              // 3. Formatowanie linków i zamiana nowej linii na <br/>
+              let formattedContent = visibleContent
                 .replace(
                   /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
                   '<a href="$2" target="_blank" rel="noopener noreferrer" class="font-medium text-[#B8A179] border-b border-[#B8A179]/30 hover:border-[#B8A179] transition-colors">$1</a>'
                 )
                 .replace(/\n/g, "<br/>");
 
-              // 3. Dodatkowe usunięcie ewentualnych początkowych tagów <br/> z wygenerowanego HTML
+              // 4. Dodatkowe usunięcie tagów <br/> z samego początku HTML
               formattedContent = formattedContent.replace(/^(<br\s*\/?>\s*)+/i, '');
-
-              const isAssistantEmpty = msg.role === 'assistant' && msg.content.trim() === '';
-              if (isAssistantEmpty) return null;
 
               return (
                 <div
@@ -413,7 +416,7 @@ export function HeroSection() {
             {(isTyping || (
               messages.length > 0 &&
               messages[messages.length - 1].role === 'assistant' &&
-              messages[messages.length - 1].content.trim() === ''
+              messages[messages.length - 1].content.replace(/<!--[\s\S]*?(?:-->|$)/g, '').replace(/^[\s\n\r]+/, '').trim() === ''
             )) && (
               <div className="flex w-full justify-start">
                 <div className="bg-white/5 border border-white/10 text-white/80 rounded-xl rounded-tl-sm px-4 py-3 max-w-[85%] min-h-[52px] flex items-center">
