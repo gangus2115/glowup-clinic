@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, X, Calendar, ShieldAlert, Sparkles, MessageCircle } from "lucide-react";
 
@@ -27,6 +27,13 @@ export function HeroSection() {
   const [isTyping, setIsTyping] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [conversationId, setConversationId] = useState("");
+  const chatContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+    }
+  }, [messages, isTyping, isDrawerOpen]);
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -362,7 +369,9 @@ export function HeroSection() {
           </div>
 
           {/* Chat Window */}
-          <div className="flex-1 overflow-y-auto p-6 flex flex-col gap-4
+          <div
+            ref={chatContainerRef}
+            className="flex-1 overflow-y-auto p-6 flex flex-col gap-4
             [&::-webkit-scrollbar]:w-[4px]
             [&::-webkit-scrollbar-track]:bg-transparent
             [&::-webkit-scrollbar-thumb]:bg-white/15
