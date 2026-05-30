@@ -101,10 +101,12 @@ export function HeroSection() {
     setIsTyping(true);
 
     try {
+      const zabiegDemo = new URLSearchParams(window.location.search).get("zabieg_demo") || "";
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          inputs: { zabieg_demo: zabiegDemo },
           query: userMessage.content,
           conversation_id: conversationId,
         }),

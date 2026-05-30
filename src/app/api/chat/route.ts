@@ -12,7 +12,7 @@ export async function POST(request: Request) {
     }
 
     const payload: any = {
-      inputs: {},
+      inputs: body.inputs || {},
       query: body.query,
       response_mode: "streaming",
       user: "web-user"
