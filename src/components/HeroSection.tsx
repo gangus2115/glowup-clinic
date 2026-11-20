@@ -259,7 +259,7 @@ export function HeroSection() {
 
               {/* Paragraph */}
               <p className="text-base md:text-lg text-stone-400 font-light leading-relaxed mb-16 max-w-md tracking-wide">
-                Poznaj Weronikę – Twoją Wirtualną Asystentkę. Zobacz, jak interaktywna inteligencja
+                Poznaj Weronikę, Twoją Wirtualną Asystentkę. Zobacz, jak interaktywna inteligencja
                 dba o rezerwacje i komfort pacjentów w standardzie premium.
               </p>
 

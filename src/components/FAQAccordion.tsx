@@ -14,11 +14,11 @@ const faqs = [
   },
   {
     q: "Czy moje dane medyczne są bezpieczne?",
-    a: "Wszystkie dane są przetwarzane zgodnie z RODO. System nie przechowuje informacji medycznych dłużej niż wymaga tego cel rezerwacji.",
+    a: "To wersja demonstracyjna, więc prosimy nie podawać prawdziwych danych medycznych. Przy wdrożeniu dane zostają na kontach kliniki, a zasady ich przechowywania ustalamy zgodnie z RODO.",
   },
   {
     q: "Jak wdrożyć Weronikę w mojej klinice?",
-    a: "Wdrożenie trwa do 7 dni roboczych. Obejmuje konfigurację, testy i szkolenie personelu.",
+    a: "Zwykle od 1 do 3 tygodni, zależnie od zakresu. Obejmuje konfigurację, testy i krótkie szkolenie personelu.",
   },
 ];
 

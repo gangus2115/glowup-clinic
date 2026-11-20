@@ -73,7 +73,7 @@ export function ExitIntentModal() {
                 Zanim wyjdziesz...
               </h2>
               <p className="text-white/50 font-light leading-relaxed mb-8">
-                Zostaw numer telefonu, a Weronika oddzwoni do Ciebie w 5 minut z darmową wyceną systemu dla Twojej kliniki.
+                Zostaw numer telefonu, a odezwiemy się z darmową wyceną takiego systemu dla Twojej kliniki.
               </p>
 
               <form
@@ -119,7 +119,7 @@ export function ExitIntentModal() {
 
               <div className="mt-8">
                 <p className="text-xs text-white/40 font-light tracking-wide leading-relaxed">
-                  Gwarantujemy 100% dyskrecji. Nie wysyłamy spamu.
+                  Nie wysyłamy spamu.
                   <br />
                   Wersja demonstracyjna. Prosimy nie podawać prawdziwych danych medycznych. Zostawiając numer, zgadzasz się na jednorazowy kontakt.
                 </p>

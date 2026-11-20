@@ -227,7 +227,7 @@ export default function HeroGlassVisual() {
           <div className="flex items-center gap-2.5">
             <span style={{ color: "#B8A179", fontSize: "0.65rem", letterSpacing: "0" }}>✦</span>
             <span style={{ color: "rgba(255,255,255,0.80)", fontSize: "0.78rem", fontWeight: 300, letterSpacing: "0.06em", fontFamily: "var(--font-sans)" }}>
-              4.97 / 5.0 · Średnia ocen
+              Rezerwacja przez czat
             </span>
           </div>
         </motion.div>
@@ -264,7 +264,7 @@ export default function HeroGlassVisual() {
           <div className="flex items-center gap-2.5">
             <span style={{ color: "#B8A179", fontSize: "0.65rem", letterSpacing: "0" }}>→</span>
             <span style={{ color: "rgba(255,255,255,0.80)", fontSize: "0.78rem", fontWeight: 300, letterSpacing: "0.06em", fontFamily: "var(--font-sans)" }}>
-              847 zadowolonych Pacjentek
+              Zadatek online przez Stripe
             </span>
           </div>
         </motion.div>
@@ -301,7 +301,7 @@ export default function HeroGlassVisual() {
           <div className="flex items-center gap-2.5">
             <span style={{ color: "#B8A179", fontSize: "0.65rem", letterSpacing: "0" }}>✦</span>
             <span style={{ color: "rgba(255,255,255,0.80)", fontSize: "0.78rem", fontWeight: 300, letterSpacing: "0.06em", fontFamily: "var(--font-sans)" }}>
-              Certyfikowana klinika premium
+              Projekt demonstracyjny
             </span>
           </div>
         </motion.div>

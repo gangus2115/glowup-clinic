@@ -20,60 +20,31 @@ export function SocialProofSection() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center max-w-4xl mx-auto relative z-10">
 
-        {/* 120h */}
+        {/* 8 procesów (8 workflowów n8n w demo) */}
         <div className="flex flex-col items-center gap-2">
           <div className="flex items-baseline gap-[0.15em]">
             <NumberTicker
-              value={120}
+              value={8}
               delay={0}
               className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#B8A179] [text-shadow:0_0_20px_rgba(184,161,121,0.3)]"
               style={statFont}
             />
-            <span
-              style={{
-                fontSize: "0.55em",
-                fontWeight: 500,
-                letterSpacing: "-0.02em",
-                color: "#C0C0C0",
-                opacity: 0.72,
-                lineHeight: 1,
-                paddingBottom: "0.15em",
-              }}
-            >
-              h
-            </span>
           </div>
           <p className="text-[0.75rem] font-normal uppercase tracking-[0.08em] text-white/40"
              style={statFont}>
-            Zaoszczędzone miesięcznie
+            Zautomatyzowanych procesów
           </p>
         </div>
 
-        {/* 0 leadów */}
+        {/* 24/7 */}
         <div className="flex flex-col items-center gap-2">
           <div className="flex items-baseline gap-[0.15em]">
             <NumberTicker
-              value={0}
+              value={24}
               delay={0.15}
               className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#B8A179] [text-shadow:0_0_20px_rgba(184,161,121,0.3)]"
               style={statFont}
             />
-          </div>
-          <p className="text-[0.75rem] font-normal uppercase tracking-[0.08em] text-white/40"
-             style={statFont}>
-            Utraconych leadów
-          </p>
-        </div>
-
-        {/* 100% */}
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex items-baseline gap-[0.15em]">
-            <NumberTicker
-              value={100}
-              delay={0.30}
-              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#B8A179] [text-shadow:0_0_20px_rgba(184,161,121,0.3)]"
-              style={statFont}
-            />
             <span
               style={{
                 fontSize: "0.55em",
@@ -85,12 +56,28 @@ export function SocialProofSection() {
                 paddingBottom: "0.15em",
               }}
             >
-              %
+              /7
             </span>
           </div>
           <p className="text-[0.75rem] font-normal uppercase tracking-[0.08em] text-white/40"
              style={statFont}>
-            Dyskrecji
+            Przyjmowanie zapytań
+          </p>
+        </div>
+
+        {/* 1 rozmowa */}
+        <div className="flex flex-col items-center gap-2">
+          <div className="flex items-baseline gap-[0.15em]">
+            <NumberTicker
+              value={1}
+              delay={0.30}
+              className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[-0.04em] text-[#B8A179] [text-shadow:0_0_20px_rgba(184,161,121,0.3)]"
+              style={statFont}
+            />
+          </div>
+          <p className="text-[0.75rem] font-normal uppercase tracking-[0.08em] text-white/40"
+             style={statFont}>
+            Rozmowa: od pytania do zadatku
           </p>
         </div>
 

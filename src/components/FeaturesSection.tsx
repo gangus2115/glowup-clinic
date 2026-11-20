@@ -45,7 +45,7 @@ export function FeaturesSection() {
               </div>
               <h3 style={cardTitleStyle}>Niezawodny Kalendarz</h3>
               <p style={cardDescStyle}>
-                Inteligentne zarządzanie rezerwacjami 24/7. System sam układa wizyty, eliminując puste okienka.
+                Rezerwacje o każdej porze. Asystentka proponuje wolne terminy prosto z kalendarza kliniki.
               </p>
             </div>
           </SpotlightCard>
@@ -58,7 +58,7 @@ export function FeaturesSection() {
               </div>
               <h3 style={cardTitleStyle}>Bezpieczeństwo Pacjenta</h3>
               <p style={cardDescStyle}>
-                Zautomatyzowany wywiad medyczny. Weronika bezbłędnie wyłapuje przeciwwskazania do zabiegów jeszcze przed potwierdzeniem wizyty.
+                Zautomatyzowany wywiad medyczny. Weronika pyta o przeciwwskazania do zabiegu jeszcze przed potwierdzeniem wizyty.
               </p>
             </div>
           </SpotlightCard>
@@ -71,7 +71,7 @@ export function FeaturesSection() {
               </div>
               <h3 style={cardTitleStyle}>Ochrona Biznesu</h3>
               <p style={cardDescStyle}>
-                System wczesnego reagowania. Natychmiastowe powiadomienia SMS w przypadku sytuacji kryzysowych.
+                System wczesnego reagowania. Natychmiastowe powiadomienie e-mail do lekarza w sytuacji kryzysowej.
               </p>
             </div>
           </SpotlightCard>
